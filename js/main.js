@@ -5,6 +5,7 @@ const Pi = 3.14;
 let area = Pi * radio ** 2;
 
 alert("El area del circulo es: " + area);
+console.log("El area del circulo es: " + area);
 
 //Calculo de edad
 let nombre = prompt("Ingrese su nombre: ");
