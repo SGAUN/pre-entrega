@@ -12,4 +12,5 @@ let nombre = prompt("Ingrese su nombre: ");
 const fechaDeNacimiento = parseInt(prompt("Ingrese su año de nacimiento: "));
 let edad = 2026 - fechaDeNacimiento;
 
+//Mensaje de salida
 alert("Hola " + nombre + " su edad es: " + edad + " años");
