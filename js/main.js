@@ -35,7 +35,6 @@ do {
             //si ingresa cualquier otra opcion se sale
             console.log("Gracias!!");
             continuar = false;
-            break;
     }
 
     //pregunto si quiero continuar
