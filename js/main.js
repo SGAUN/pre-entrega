@@ -1,5 +1,5 @@
 //Calculadora de areas
-const Pi = 3.14;
+const pi = 3.14;
 let continuar = true;
 
 do {
@@ -15,7 +15,7 @@ do {
         case 1:
             //area circulo
             let radio = parseInt(prompt("ingrese el radio del circulo"));
-            let areaCirculo = Pi * radio ** 2;
+            let areaCirculo = pi * radio ** 2;
             console.log("el area del circulo es " + areaCirculo);
             break;
         case 2:
