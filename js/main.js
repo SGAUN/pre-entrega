@@ -1,6 +1,6 @@
 //pide un numero para elegir la opcion en la calculadora
 function pedirOpcionCalculadora() {
-    let numero = Number(
+    const numero = Number(
         prompt(
             "calculadora de areas: ingrese el area que quiera calcular:\n(1) area de un circulo \n(2) area de un cuadrado \n(3) area de un rectangulo \n(4) area de un triangulo rectangulo \n\ncualquier otro numero para salir",
         ),
@@ -26,28 +26,28 @@ function iniciarCalculadora() {
         switch (opcion) {
             case 1:
                 //area circulo
-                let radio = Number(prompt("ingrese el radio del circulo"));
-                let areaCirculo = calcularAreaCirculo(radio);
+                const radio = Number(prompt("ingrese el radio del circulo"));
+                const areaCirculo = calcularAreaCirculo(radio);
                 console.log("el area del circulo es " + areaCirculo);
                 break;
             case 2:
                 //area cuadrado
-                let ladoCuadrado = Number(prompt("ingrese la base del cuadrado"));
-                let areaCuadrado = calcularAreaRectangulo(ladoCuadrado, ladoCuadrado);
+                const ladoCuadrado = Number(prompt("ingrese la base del cuadrado"));
+                const areaCuadrado = calcularAreaRectangulo(ladoCuadrado, ladoCuadrado);
                 console.log("el area del cuadrado es " + areaCuadrado);
                 break;
             case 3:
                 //area rectangulo
-                let baseRectangulo = Number(prompt("ingrese la base del rectangulo"));
-                let alturaRectangulo = Number(prompt("ingrese la altura del rectangulo"));
-                let areaRectangulo = calcularAreaRectangulo(baseRectangulo, alturaRectangulo);
+                const baseRectangulo = Number(prompt("ingrese la base del rectangulo"));
+                const alturaRectangulo = Number(prompt("ingrese la altura del rectangulo"));
+                const areaRectangulo = calcularAreaRectangulo(baseRectangulo, alturaRectangulo);
                 console.log("el area del rectangulo es " + areaRectangulo);
                 break;
             case 4:
                 //area triangulo rectangulo
-                let baseTriangulo = Number(prompt("ingrese la base del triangulo"));
-                let alturaTriangulo = Number(prompt("ingrese la altura del triangulo"));
-                let areaTriangulo = calcularAreaRectangulo(baseTriangulo, alturaTriangulo) / 2;
+                const baseTriangulo = Number(prompt("ingrese la base del triangulo"));
+                const alturaTriangulo = Number(prompt("ingrese la altura del triangulo"));
+                const areaTriangulo = calcularAreaRectangulo(baseTriangulo, alturaTriangulo) / 2;
                 console.log("el area del triangulo es " + areaTriangulo);
                 break;
             default:
