@@ -2,7 +2,8 @@
 const pi = 3.14;
 let continuar = true;
 
-do {
+//pregunto si quiero utilizar la calculadora
+while (confirm("Deseas utilizar la calculadora?")) {
     //menu de opciones
     let opcion = parseInt(
         prompt(
@@ -34,15 +35,5 @@ do {
         default:
             //si ingresa cualquier otra opcion se sale
             console.log("Gracias!!");
-            continuar = false;
     }
-
-    //pregunto si quiero continuar
-    if (continuar) {
-        let respuesta = prompt("desea continuar con la calculadora (si/no)");
-        if (respuesta != "si") {
-            continuar = false;
-            console.log("Gracias!!");
-        }
-    }
-} while (continuar);
+}
