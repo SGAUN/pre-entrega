@@ -9,46 +9,80 @@ function pedirOpcionCalculadora() {
 }
 
 //con radio calcula el area del circulo
-function calcularAreaCirculo(radio = 0) {
+function obtenerAreaCirculo(radio = 0) {
     const pi = 3.14;
     return pi * radio ** 2;
 }
 
 //con base y altura calcula el area del rectangulo
-const calcularAreaRectangulo = (base = 0, altura = 0) => base * altura;
+const obtenerAreaRectangulo = (base = 0, altura = 0) => base * altura;
+
+//comprueba si el valor ingresado es un numero mayor a 0
+const esNumeroMayorACero = (numero) => !isNaN(numero) && numero > 0;
+
+//area circulo
+function calcularAreaCirculo() {
+    const radio = Number(prompt("ingrese el radio del circulo"));
+    if (!esNumeroMayorACero(radio)) {
+        console.log("el radio del circulo ingresado debe ser un numero mayor a 0");
+        return;
+    }
+    const areaCirculo = obtenerAreaCirculo(radio);
+    console.log("el area del circulo es: " + areaCirculo);
+}
+
+//area cuadrado
+function calcularAreaCuadrado() {
+    const lado = Number(prompt("ingrese el lado del cuadrado"));
+    if (!esNumeroMayorACero(lado)) {
+        console.log("el lado del cuadrado ingresado debe ser un numero mayor a 0");
+        return;
+    }
+    const areaCuadrado = obtenerAreaRectangulo(lado, lado);
+    console.log("el area del cuadrado es: " + areaCuadrado);
+}
+
+//area rectangulo
+function calcularAreaRectangulo() {
+    const base = Number(prompt("ingrese la base del rectangulo"));
+    const altura = Number(prompt("ingrese la altura del rectangulo"));
+    if (!esNumeroMayorACero(base) || !esNumeroMayorACero(altura)) {
+        console.log("la base y la altura del rectangulo deben ser numeros mayores a 0");
+        return;
+    }
+    const areaRectangulo = obtenerAreaRectangulo(base, altura);
+    console.log("el area del rectangulo es: " + areaRectangulo);
+}
+
+//area triangulo rectangulo
+function calcularAreaTrianguloRectangulo() {
+    const base = Number(prompt("ingrese la base del triangulo"));
+    const altura = Number(prompt("ingrese la altura del triangulo"));
+    if (!esNumeroMayorACero(base) || !esNumeroMayorACero(altura)) {
+        console.log("la base y la altura del triangulo rectangulo deben ser numeros mayores a 0");
+        return;
+    }
+    const areaTriangulo = obtenerAreaRectangulo(base, altura) / 2;
+    console.log("el area del triangulo es: " + areaTriangulo);
+}
 
 //calculadora de areas
 function iniciarCalculadora() {
     //pregunto si quiero utilizar la calculadora
     while (confirm("deseas utilizar la calculadora?")) {
         let opcion = pedirOpcionCalculadora();
-        //switch para las opciones
         switch (opcion) {
             case 1:
-                //area circulo
-                const radio = Number(prompt("ingrese el radio del circulo"));
-                const areaCirculo = calcularAreaCirculo(radio);
-                console.log("el area del circulo es " + areaCirculo);
+                calcularAreaCirculo();
                 break;
             case 2:
-                //area cuadrado
-                const ladoCuadrado = Number(prompt("ingrese la base del cuadrado"));
-                const areaCuadrado = calcularAreaRectangulo(ladoCuadrado, ladoCuadrado);
-                console.log("el area del cuadrado es " + areaCuadrado);
+                calcularAreaCuadrado();
                 break;
             case 3:
-                //area rectangulo
-                const baseRectangulo = Number(prompt("ingrese la base del rectangulo"));
-                const alturaRectangulo = Number(prompt("ingrese la altura del rectangulo"));
-                const areaRectangulo = calcularAreaRectangulo(baseRectangulo, alturaRectangulo);
-                console.log("el area del rectangulo es " + areaRectangulo);
+                calcularAreaRectangulo();
                 break;
             case 4:
-                //area triangulo rectangulo
-                const baseTriangulo = Number(prompt("ingrese la base del triangulo"));
-                const alturaTriangulo = Number(prompt("ingrese la altura del triangulo"));
-                const areaTriangulo = calcularAreaRectangulo(baseTriangulo, alturaTriangulo) / 2;
-                console.log("el area del triangulo es " + areaTriangulo);
+                calcularAreaTrianguloRectangulo();
                 break;
             default:
                 //muestra un mensaje de error
