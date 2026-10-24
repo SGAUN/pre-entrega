@@ -1,10 +1,12 @@
 const pi = 3.14;
 const unidadCM = "cm^2";
 const unidadM = "m^2";
+const unidadPorDefecto = unidadCM;
 
 const circulo = "circulo";
 const cuadrado = "cuadrado";
 const rectangulo = "rectangulo";
+const personalizado = "personalizado";
 
 //rojo verde y azul se usa para areas calculadas por el simulador y sin modificar, elcolor blanco para otro caso
 const colorCirculo = "rojo";
@@ -17,8 +19,9 @@ const menuPrincipal =
     "(1) agregar area de un circulo\n" +
     "(2) agregar area de un cuadrado\n" +
     "(3) agregar area de un rectangulo\n" +
-    "(4) cargar areas de ejemplo\n" +
-    "(5) administrar lista de areas guardadas\n";
+    "(4) agregar area personalizada\n" +
+    "(5) cargar areas de ejemplo\n" +
+    "(6) administrar lista de areas guardadas\n";
 const menuAdministrarListaAreas =
     "gestion de areas guardadas:\n" +
     "(1) ver todas las areas\n" +
@@ -126,6 +129,14 @@ function calcularAreaRectangulo() {
     return altura ? obtenerAreaRectangulo(base, altura) : null;
 }
 
+//calcula un area personalizada y la devuelve
+function calcularAreaPersonalizada() {
+    return obtenerNumeroPositivo(
+        "ingrese el valor del area personalizada (en " + unidadPorDefecto + ")",
+        "el valor del area personalizada ingresado debe ser un numero mayor a 0",
+    );
+}
+
 //1 muestra lista de las areas por indice
 function mostrarListaAreas(areas) {
     let indice = 0;
@@ -162,7 +173,7 @@ function reemplazarAreaPorIndice(areas) {
     }
 
     const nuevaArea = obtenerNumeroPositivo(
-        "ingrese el nuevo valor del area (en cm^2)",
+        "ingrese el nuevo valor del area (en " + unidadPorDefecto + ")",
         "el nuevo valor del area debe ser un numero mayor a 0",
     );
     if (nuevaArea == null) {
@@ -171,7 +182,7 @@ function reemplazarAreaPorIndice(areas) {
 
     areas[indiceReemplazar].area = nuevaArea;
     areas[indiceReemplazar].color = otroColor;
-    areas[indiceReemplazar].unidad = unidadCM;
+    areas[indiceReemplazar].unidad = unidadPorDefecto;
     areas[indiceReemplazar].mostrarDatos("area reemplazada:");
 }
 
@@ -281,7 +292,7 @@ function agregarArea(funcion, areas, nombreFigura) {
     const area = funcion();
     if (area != null) {
         const colorAsignado = obtenerColor(nombreFigura);
-        const nuevaFigura = new Figura2D(nombreFigura, area, unidadCM, colorAsignado);
+        const nuevaFigura = new Figura2D(nombreFigura, area, unidadPorDefecto, colorAsignado);
 
         areas.push(nuevaFigura);
         nuevaFigura.mostrarDatos("area guardada correctamente:");
@@ -290,10 +301,10 @@ function agregarArea(funcion, areas, nombreFigura) {
 
 //carga areas de ejemplo
 function cargarAreasEjemplo(areas) {
-    const figura1 = new Figura2D(circulo, 12, unidadCM, obtenerColor(circulo));
-    const figura2 = new Figura2D(cuadrado, 34, unidadCM, obtenerColor(cuadrado));
-    const figura3 = new Figura2D(rectangulo, 56, unidadCM, obtenerColor(rectangulo));
-    const figura4 = new Figura2D(circulo, 78, unidadCM, obtenerColor(circulo));
+    const figura1 = new Figura2D(circulo, 12, unidadPorDefecto, obtenerColor(circulo));
+    const figura2 = new Figura2D(cuadrado, 34, unidadPorDefecto, obtenerColor(cuadrado));
+    const figura3 = new Figura2D(rectangulo, 56, unidadPorDefecto, obtenerColor(rectangulo));
+    const figura4 = new Figura2D(circulo, 78, unidadPorDefecto, obtenerColor(circulo));
 
     areas.push(figura1, figura2, figura3, figura4);
     console.log("areas de ejemplo cargadas correctamente");
@@ -314,10 +325,13 @@ function iniciarSimuladorAreas() {
             case 3: //calcula el area del rectangulo y la agrega a la lista
                 agregarArea(calcularAreaRectangulo, listaAreas, rectangulo);
                 break;
-            case 4: //cargar areas de ejemplo
+            case 4: //calcula un area personalizada y la agrega a la lista
+                agregarArea(calcularAreaPersonalizada, listaAreas, personalizado);
+                break;
+            case 5: //cargar areas de ejemplo
                 cargarAreasEjemplo(listaAreas);
                 break;
-            case 5: //administrar la lista de areas guardadas
+            case 6: //administrar la lista de areas guardadas
                 administrarListaAreas(listaAreas);
                 break;
             default: //muestra un mensaje de error
