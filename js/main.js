@@ -1,7 +1,7 @@
 const pi = 3.14;
 const unidadCM = "cm^2";
 const unidadM = "m^2";
-
+const unidadPorDefecto = unidadCM;
 class Figura2D {
     static id = 0;
     constructor(nombre, area, unidad, color) {
@@ -17,152 +17,263 @@ class Figura2D {
     }
     convertirACentimetrosCuadrados() {
         this.area = this.area * 10000;
-        this.unidad = unidadCM;
+        this.unidad = unidadPorDefecto;
     }
     mostrarDatos(mensaje) {
         console.log(mensaje, "ID:", this.id, this.nombre, this.color, "area:", this.area, this.unidad);
     }
 }
 
-function convertirAreaUnidad(areas, unidad) {
-    let indice = parseInt(prompt("ingrese el indice del area que desea convertir a " + unidad));
-    if (indice < 0 || indice >= areas.length) {
+function convertirAreaDeFigura(listaFiguras, unidad) {
+    let indice = parseInt(prompt("ingrese el indice de la figura que desea convertir a " + unidad));
+    if (isNaN(indice) || indice < 0 || indice >= listaFiguras.length) {
         console.log("indice invalido");
         return;
     }
-    if (areas[indice].unidad == unidad) {
-        console.log("el area ya esta en", unidad);
+    if (listaFiguras[indice].unidad == unidad) {
+        console.log("la figura ya esta en", unidad);
         return;
     }
     if (unidad == unidadM) {
-        areas[indice].convertirAMetrosCuadrados();
+        listaFiguras[indice].convertirAMetrosCuadrados();
     } else {
-        areas[indice].convertirACentimetrosCuadrados();
+        listaFiguras[indice].convertirACentimetrosCuadrados();
     }
-    areas[indice].mostrarDatos("area convertida a " + unidad + ":");
-} //8 y 7 convierte un area a metros o centimetros segun la unidad
+    listaFiguras[indice].mostrarDatos("figura convertida a " + unidad + ":");
+} //5 y 6 convierte el area de una figura a metros o centimetros segun la unidad
 
-function borrarAreaPorIndice(areas) {
-    let indiceBorrar = parseInt(prompt("ingrese el indice del area que desea borrar"));
-    if (indiceBorrar < 0 || indiceBorrar >= areas.length) {
+function borrarFiguraSegunIndice(listaFiguras) {
+    let indiceBorrar = parseInt(prompt("ingrese el indice de la figura que desea borrar"));
+    if (isNaN(indiceBorrar) || indiceBorrar < 0 || indiceBorrar >= listaFiguras.length) {
         console.log("indice invalido");
         return;
     }
-    let areaBorrada = areas.splice(indiceBorrar, 1)[0];
-    areaBorrada.mostrarDatos("area borrada:");
-} //6 borra un area segun el indice
+    let figuraBorrada = listaFiguras.splice(indiceBorrar, 1)[0];
+    figuraBorrada.mostrarDatos(" figura borrada:");
+} //4 borra una figura segun el indice
 
-function borrarUltimaArea(areas) {
-    if (areas.length == 0) {
-        console.log("la lista de areas esta vacia");
-        return;
-    }
-    const ultimaArea = areas.pop();
-    ultimaArea.mostrarDatos("area borrada:");
-} //5 borra la ultima area agregada
+function borrarUltimaFigura(listaFiguras) {
+    const ultimaFigura = listaFiguras.pop();
+    ultimaFigura.mostrarDatos("ultima figura borrada:");
+} //3 borra la ultima area agregada
 
-function borrarPrimeraArea(areas) {
-    if (areas.length == 0) {
-        console.log("la lista de areas esta vacia");
-        return;
-    }
-    const primeraArea = areas.shift();
-    primeraArea.mostrarDatos("area borrada:");
-} //4 borra la primera area agregada
+function borrarPrimeraFigura(listaFiguras) {
+    const primeraFigura = listaFiguras.shift();
+    primeraFigura.mostrarDatos("primera figura borrada:");
+} //2 borra la primera area agregada
 
 const esNumeroMayorACero = (numero = 0) => !isNaN(numero) && numero > 0; //comprueba si el valor ingresado es un numero mayor a 0
 
-function reemplazarAreaPorIndice(areas) {
+function reemplazarAreaDeFiguraSegunIndice(listaFiguras) {
     let indiceReemplazar = parseInt(prompt("ingrese el indice del area que desea reemplazar"));
-    if (indiceReemplazar < 0 || indiceReemplazar >= areas.length) {
+    if (isNaN(indiceReemplazar) || indiceReemplazar < 0 || indiceReemplazar >= listaFiguras.length) {
         console.log("indice invalido");
         return;
     }
-    let nuevaArea = Number(prompt("ingrese el nuevo valor del area (en " + unidadCM + ")"));
+    let nuevaArea = Number(prompt("ingrese el nuevo valor del area (en " + unidadPorDefecto + ")"));
     if (!esNumeroMayorACero(nuevaArea)) {
         console.log("el nuevo valor del area debe ser un numero mayor a 0");
         return;
     }
-    areas[indiceReemplazar].area = nuevaArea;
-    areas[indiceReemplazar].color = "blanco";
-    areas[indiceReemplazar].unidad = unidadCM;
-    areas[indiceReemplazar].mostrarDatos("area reemplazada:");
-} //3 reemplaza un area por otra
+    listaFiguras[indiceReemplazar].area = nuevaArea;
+    listaFiguras[indiceReemplazar].color = "blanco";
+    listaFiguras[indiceReemplazar].unidad = unidadPorDefecto;
+    listaFiguras[indiceReemplazar].mostrarDatos("figura reemplazada:");
+} //1 reemplaza un area de una figura por otra
 
-function buscarAreaPorID(areas) {
-    let idBuscado = parseInt(prompt("ingrese el ID del area que desea buscar"));
-    let indice = -1;
-    for (const figura of areas) {
-        if (figura.id == idBuscado) {
-            indice = areas.indexOf(figura);
-            figura.mostrarDatos("figura encontrada:");
-            return indice;
-        }
-    }
-    console.log("area no encontrada con ese ID");
-    return indice;
-} //2 busca un area segun el valor y devuelve el indice si existe
-
-function mostrarListaAreas(areas) {
-    let indice = 0;
-    console.log("lista de areas guardadas:");
-    for (const figura of areas) {
-        figura.mostrarDatos("indice: " + indice + " |");
-        indice++;
-    }
-} //1 muestra lista de las areas por indice
-
-function administrarListaAreas(areas) {
-    if (areas.length == 0) {
-        console.log("la lista de areas esta vacia");
+function menuEditarFiguras(listaFiguras) {
+    if (listaFiguras.length == 0) {
+        console.log("la lista de  figuras esta vacia");
         return;
     }
-    const opcion = parseInt(prompt("gestion de areas guardadas:\n(1) ver todas las areas\n(2) buscar un area especifica\n(3) reemplazar un area especifica\n(4) borrar la primera area agregada\n(5) borrar la ultima area agregada\n(6) borrar un area especifica\n(7) convertir area de cm^2 a m^2\n(8) convertir area de m^2 a cm^2\n",));
+    const opcion = parseInt(
+        prompt(
+            "menu de edicion:\n" +
+                "(1) reemplazar figura segun el indice\n" +
+                "(2) borrar la primera figura\n" +
+                "(3) borrar la ultima figura\n" +
+                "(4) borrar figura especifica por indice\n" +
+                "(5) convertir area de figura a metros\n" +
+                "(6) convertir area de figura a centimetros\n",
+        ),
+    );
     switch (opcion) {
-        case 1: //ver todas las areas
-            mostrarListaAreas(areas);
+        case 1: //reemplazar area por indice
+            reemplazarAreaDeFiguraSegunIndice(listaFiguras);
             break;
-        case 2: //busca un area especifica y avisa si existe o no
-            buscarAreaPorID(areas);
+        case 2: //borrar primera   figura
+            borrarPrimeraFigura(listaFiguras);
             break;
-        case 3: //reemplazar un area especifica
-            reemplazarAreaPorIndice(areas);
+        case 3: //borrar ultima   figura
+            borrarUltimaFigura(listaFiguras);
             break;
-        case 4: //borrar la primera area agregada
-            borrarPrimeraArea(areas);
+        case 4: //borrar  figura por indice
+            borrarFiguraSegunIndice(listaFiguras);
             break;
-        case 5: //borrar la ultima area agregada
-            borrarUltimaArea(areas);
+        case 5: //convertir a metros
+            convertirAreaDeFigura(listaFiguras, unidadM);
             break;
-        case 6: //borrar un area especifica
-            borrarAreaPorIndice(areas);
+        case 6: //convertir a centimetros
+            convertirAreaDeFigura(listaFiguras, unidadPorDefecto);
             break;
-        case 7: //convertir area a metros
-            convertirAreaUnidad(areas, unidadM);
+        default: //volver al menu principal
+            console.log("opcion invalida");
+    }
+}
+
+function buscarFiguraPorID(listaFiguras) {
+    let idBuscado = parseInt(prompt("ingrese el ID de la figura que desea buscar"));
+    if (!esNumeroMayorACero(idBuscado)) {
+        console.log("el ID debe ser un numero entero positivo");
+        return;
+    }
+
+    const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
+    if (figuraEncontrada) {
+        figuraEncontrada.mostrarDatos("figura encontrada:");
+        return;
+    }
+    console.log("figura no encontrada con ese ID");
+} //7 busca un figura segun el ID y lo muestra
+
+function buscarFigurasPorArea(listaFiguras) {
+    let areaBuscada = Number(
+        prompt("ingrese el valor del area de la figura que desea buscar (en " + unidadPorDefecto + ")"),
+    );
+    if (!esNumeroMayorACero(areaBuscada)) {
+        console.log("el valor del area buscada debe ser un numero mayor a 0");
+        return;
+    }
+
+    const figurasEncontradas = listaFiguras.filter((figura) => figura.area == areaBuscada);
+    if (figurasEncontradas.length == 0) {
+        console.log("el area buscada no existe en la lista de figuras");
+        return;
+    }
+
+    console.log("el area buscada existe en la lista de figuras");
+    figurasEncontradas.forEach((figura) => {
+        let indice = listaFiguras.indexOf(figura);
+        figura.mostrarDatos("indice: " + indice + " |");
+    });
+} //6 busca si en lal ista de figuras existe una figura con el area ingresada
+
+function mostrarAreaTotal(listaFiguras) {
+    const areaTotal = listaFiguras.reduce((acumulador, elemento) => {
+        if (elemento.unidad == unidadM) {
+            return acumulador + elemento.area * 10000;
+        } else {
+            return acumulador + elemento.area;
+        }
+    }, 0);
+    console.log("el area total de todas las figuras es:", areaTotal, unidadPorDefecto);
+} //5 muestra el calculo del area total de todas las figuras
+
+function mostrarListaFiguras(listaFiguras, orden = "") {
+    let FigurasAProcesar = listaFiguras;
+
+    if (orden === "ascendente") {
+        console.log("lista de figuras ordenadas ascendentemente:");
+        FigurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
+    } else if (orden === "descendente") {
+        console.log("lista de figuras ordenadas descendentemente:");
+        FigurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
+    } else {
+        console.log("lista de figuras guardadas:");
+    }
+
+    FigurasAProcesar.forEach((figura) => {
+        let indice = listaFiguras.indexOf(figura);
+        figura.mostrarDatos("indice: " + indice + " |");
+    });
+} //1 2 3 muestra lista de figuras guardadas
+
+function mostrarFigurasPorRango(listaFiguras) {
+    let valorPrimero = Number(prompt("ingrese el primer valor del rango (en " + unidadPorDefecto + ")"));
+    if (!esNumeroMayorACero(valorPrimero)) {
+        console.log("el valor minimo del rango debe ser un numero mayor a 0");
+        return;
+    }
+    let ValorSegundo = Number(prompt("ingrese el segundo valor del rango (en " + unidadPorDefecto + ")"));
+    if (!esNumeroMayorACero(ValorSegundo)) {
+        console.log("el valor maximo del rango debe ser un numero mayor a 0");
+        return;
+    }
+
+    if (valorPrimero > ValorSegundo) {
+        let aux = valorPrimero;
+        valorPrimero = ValorSegundo;
+        ValorSegundo = aux;
+    }
+
+    const FigurasEnRango = listaFiguras.filter((figura) => figura.area >= valorPrimero && figura.area <= ValorSegundo);
+    if (FigurasEnRango.length == 0) {
+        console.log("no hay figuras en el rango especificado");
+        return;
+    }
+    console.log("figuras en el rango de", valorPrimero, "a", ValorSegundo, unidadPorDefecto);
+    FigurasEnRango.forEach((figura) => {
+        let indiceReal = listaFiguras.indexOf(figura);
+        figura.mostrarDatos("indice: " + indiceReal + " |");
+    });
+} //4 muestra las figuras que estan dentro de un rango de 2 valores
+
+function menuInformacionFiguras(listaFiguras) {
+    if (listaFiguras.length == 0) {
+        console.log("la lista de figuras esta vacia");
+        return;
+    }
+    const opcion = parseInt(
+        prompt(
+            "menu de informacion:\n" +
+                "(1) ver lista de  figuras\n" +
+                "(2) ver figuras ordenadas ascendentemente\n" +
+                "(3) ver figuras ordenadas descendentemente\n" +
+                "(4) mostrar figuras por rango\n" +
+                "(5) mostrar area total\n" +
+                "(6) buscar figura por area\n" +
+                "(7) buscar figura por id\n",
+        ),
+    );
+    switch (opcion) {
+        case 1: //mostrar lista de  figuras
+            mostrarListaFiguras(listaFiguras);
             break;
-        case 8: //convertir area a centimetros
-            convertirAreaUnidad(areas, unidadCM);
+        case 2: //mostrar figuras ordenadas ascendentemente
+            mostrarListaFiguras(listaFiguras, "ascendente");
             break;
-        default:
+        case 3: //mostrar figuras ordenadas descendentemente
+            mostrarListaFiguras(listaFiguras, "descendente");
+            break;
+        case 4: //mostrar figuras por rango
+            mostrarFigurasPorRango(listaFiguras);
+            break;
+        case 5: //mostrar area total
+            mostrarAreaTotal(listaFiguras);
+            break;
+        case 6: //buscar figura por area
+            buscarFigurasPorArea(listaFiguras);
+            break;
+        case 7: //buscar figura por id
+            buscarFiguraPorID(listaFiguras);
+            break;
+        default: //volver al menu principal
             console.log("volviendo al menu principal");
     }
-} //gestiona la lista de areas con un menu de opciones
+}
 
-function obtenerColor(nombreFigura) {
-    switch (nombreFigura) {
-        case "circulo":
-            return "rojo";
-        case "cuadrado":
-            return "verde";
-        case "rectangulo":
-            return "azul";
-        default:
-            return "blanco";
-    }
-} //retorna un color segun el nombre de una figura, codigo colores: rojo verde y azul se usa para areas calculadas por el simulador y sin modificar, elcolor blanco para otro caso
+function cargarFigurasEjemplo(listaFiguras) {
+    let multiplicador = listaFiguras.length + 1;
+
+    const figura1 = new Figura2D("circulo", 34 * multiplicador, unidadPorDefecto, obtenerColor("circulo"));
+    const figura2 = new Figura2D("cuadrado", 12 * multiplicador, unidadPorDefecto, obtenerColor("cuadrado"));
+    const figura3 = new Figura2D("rectangulo", 56 * multiplicador, unidadPorDefecto, obtenerColor("rectangulo"));
+    listaFiguras.push(figura1, figura2, figura3);
+    console.log("figuras de ejemplo cargadas correctamente");
+} //5 carga figuras de ejemplo siempre con valores de area distintos entre si
 
 function ingresarAreaPersonalizada() {
-    let area = Number(prompt("ingrese el valor del area personalizada (en " + unidadCM + ")"));
+    let area = Number(prompt("ingrese el valor del area personalizada (en " + unidadPorDefecto + ")"));
     if (!esNumeroMayorACero(area)) {
         console.log("el valor del area personalizada ingresado debe ser un numero mayor a 0");
         return null;
@@ -204,52 +315,86 @@ function calcularAreaCirculo() {
     return pi * radio ** 2;
 } //1 calcula el area del circulo y la devuelve
 
-function cargarAreasEjemplo(areas) {
-    const figura1 = new Figura2D("circulo", 12, unidadCM, obtenerColor("circulo"));
-    const figura2 = new Figura2D("cuadrado", 34, unidadCM, obtenerColor("cuadrado"));
-    const figura3 = new Figura2D("rectangulo", 56, unidadCM, obtenerColor("rectangulo"));
-    const figura4 = new Figura2D("circulo", 78, unidadCM, obtenerColor("circulo"));
-    areas.push(figura1, figura2, figura3, figura4);
-    console.log("areas de ejemplo cargadas correctamente");
-} //carga areas de ejemplo
+function obtenerColor(nombreFigura) {
+    switch (nombreFigura) {
+        case "circulo":
+            return "rojo";
+        case "cuadrado":
+            return "verde";
+        case "rectangulo":
+            return "azul";
+        default:
+            return "blanco";
+    }
+} //retorna un color segun el nombre de una figura, codigo colores: rojo verde y azul se usa para areas calculadas por el simulador y sin modificar, elcolor blanco para otro caso
 
-function agregarArea(funcion, areas, nombreFigura) {
+function agregarFigura(funcion, listaFiguras, nombreFigura) {
     const area = funcion();
     if (area != null) {
         let colorAsignado = obtenerColor(nombreFigura);
-        const nuevaFigura = new Figura2D(nombreFigura, area, unidadCM, colorAsignado);
-        areas.push(nuevaFigura);
-        nuevaFigura.mostrarDatos("area guardada correctamente:");
+        const nuevaFigura = new Figura2D(nombreFigura, area, unidadPorDefecto, colorAsignado);
+        listaFiguras.push(nuevaFigura);
+        nuevaFigura.mostrarDatos("figura guardada correctamente:");
     }
 } //agrega un area a la lista de areas
 
-function iniciarSimuladorAreas() {
-    const listaAreas = [];
-    while (confirm("deseas utilizar el gestor de areas?")) {
-        let opcion = parseInt(prompt("gestor de superfices: ingrese el numero que quiera calcular:\n(1) agregar area de un circulo\n(2) agregar area de un cuadrado\n(3) agregar area de un rectangulo\n(4) agregar area personalizada\n(5) cargar areas de ejemplo\n(6) administrar lista de areas guardadas\n",)); //pregunto si quiero utilizar la calculadora
+function menuAgregarFiguras(listaFiguras) {
+    let opcion = parseInt(
+        prompt(
+            "menu de agregado de  figuras:\n" +
+                "(1) agregar figura de un circulo\n" +
+                "(2) agregar figura de un cuadrado\n" +
+                "(3) agregar figura de un rectangulo\n" +
+                "(4) agregar figura personalizada\n" +
+                "(5) cargar figuras de ejemplo\n",
+        ),
+    );
+    switch (opcion) {
+        case 1: //calcula el area del circulo y la agrega a la lista
+            agregarFigura(calcularAreaCirculo, listaFiguras, "circulo");
+            break;
+        case 2: //calcula el area del cuadrado y la agrega a la lista
+            agregarFigura(calcularAreaCuadrado, listaFiguras, "cuadrado");
+            break;
+        case 3: //calcula el area del rectangulo y la agrega a la lista
+            agregarFigura(calcularAreaRectangulo, listaFiguras, "rectangulo");
+            break;
+        case 4: //calcula un area personalizada y la agrega a la lista
+            agregarFigura(ingresarAreaPersonalizada, listaFiguras, "personalizado");
+            break;
+        case 5: //cargar areas de ejemplo
+            cargarFigurasEjemplo(listaFiguras);
+            break;
+        default:
+            console.log("opcion invalida");
+    }
+}
+
+function iniciarSimuladorFiguras() {
+    const listaFiguras = [];
+    while (confirm("deseas utilizar el gestor de  figuras?")) {
+        let opcion = parseInt(
+            prompt(
+                "gestor de figuras:\n" +
+                    "(1) agregar  figura a la lista\n" +
+                    "(2) visualizar lista de figuras\n" +
+                    "(3) editar lista de figuras\n",
+            ),
+        );
         switch (opcion) {
-            case 1: //calcula el area del circulo y la agrega a la lista
-                agregarArea(calcularAreaCirculo, listaAreas, "circulo");
+            case 1: //muestra opciones para agregar figuras a la lista
+                menuAgregarFiguras(listaFiguras);
                 break;
-            case 2: //calcula el area del cuadrado y la agrega a la lista
-                agregarArea(calcularAreaCuadrado, listaAreas, "cuadrado");
+            case 2: //muestra opciones para visualizar las figuras de la lista
+                menuInformacionFiguras(listaFiguras);
                 break;
-            case 3: //calcula el area del rectangulo y la agrega a la lista
-                agregarArea(calcularAreaRectangulo, listaAreas, "rectangulo");
+            case 3: //muestra opciones para editar las figuras de la lista
+                menuEditarFiguras(listaFiguras);
                 break;
-            case 4: //calcula un area personalizada y la agrega a la lista
-                agregarArea(ingresarAreaPersonalizada, listaAreas, "personalizado");
-                break;
-            case 5: //cargar areas de ejemplo
-                cargarAreasEjemplo(listaAreas);
-                break;
-            case 6: //administrar la lista de areas guardadas
-                administrarListaAreas(listaAreas);
-                break;
-            default: //muestra un mensaje de error
+            default: //mensaje de error
                 console.log("opcion invalida");
         }
     }
-} //inicia el simulador de areas
+}
 
-iniciarSimuladorAreas();
+iniciarSimuladorFiguras();
