@@ -170,19 +170,19 @@ function mostrarAreaTotal(listaFiguras) {
 } //5 muestra el calculo del area total de todas las figuras
 
 function mostrarListaFiguras(listaFiguras, orden = "") {
-    let FigurasAProcesar = listaFiguras;
+    let figurasAProcesar = listaFiguras;
 
     if (orden === "ascendente") {
         console.log("lista de figuras ordenadas ascendentemente:");
-        FigurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
+        figurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
     } else if (orden === "descendente") {
         console.log("lista de figuras ordenadas descendentemente:");
-        FigurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
+        figurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
     } else {
         console.log("lista de figuras guardadas:");
     }
 
-    FigurasAProcesar.forEach((figura) => {
+    figurasAProcesar.forEach((figura) => {
         let indice = listaFiguras.indexOf(figura);
         figura.mostrarDatos("indice: " + indice + " |");
     });
@@ -194,25 +194,25 @@ function mostrarFigurasPorRango(listaFiguras) {
         console.log("el valor minimo del rango debe ser un numero mayor a 0");
         return;
     }
-    let ValorSegundo = Number(prompt("ingrese el segundo valor del rango (en " + unidadPorDefecto + ")"));
-    if (!esNumeroMayorACero(ValorSegundo)) {
+    let valorSegundo = Number(prompt("ingrese el segundo valor del rango (en " + unidadPorDefecto + ")"));
+    if (!esNumeroMayorACero(valorSegundo)) {
         console.log("el valor maximo del rango debe ser un numero mayor a 0");
         return;
     }
 
-    if (valorPrimero > ValorSegundo) {
+    if (valorPrimero > valorSegundo) {
         let aux = valorPrimero;
-        valorPrimero = ValorSegundo;
-        ValorSegundo = aux;
+        valorPrimero = valorSegundo;
+        valorSegundo = aux;
     }
 
-    const FigurasEnRango = listaFiguras.filter((figura) => figura.area >= valorPrimero && figura.area <= ValorSegundo);
-    if (FigurasEnRango.length == 0) {
+    const figurasEnRango = listaFiguras.filter((figura) => figura.area >= valorPrimero && figura.area <= valorSegundo);
+    if (figurasEnRango.length == 0) {
         console.log("no hay figuras en el rango especificado");
         return;
     }
-    console.log("figuras en el rango de", valorPrimero, "a", ValorSegundo, unidadPorDefecto);
-    FigurasEnRango.forEach((figura) => {
+    console.log("figuras en el rango de", valorPrimero, "a", valorSegundo, unidadPorDefecto);
+    figurasEnRango.forEach((figura) => {
         let indiceReal = listaFiguras.indexOf(figura);
         figura.mostrarDatos("indice: " + indiceReal + " |");
     });
