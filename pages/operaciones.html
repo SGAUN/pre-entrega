@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- BOOTSTRAP CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../styles/style.css" />
+    </head>
+    <body>
+        <!-- header: Encabezado -->
+        <header>
+            <nav class="navbar navbar-expand-lg bg-oscuro">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <!-- Logo de Simulador de Areas -->
+                        <img
+                            src="https://via.placeholder.com/50x50"
+                            class="img-fluid logo-nav"
+                            alt="Logo de Simulador de Areas"
+                        />
+                    </a>
+                    <button
+                        class="navbar-toggler menu-button-text"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span>Menu</span>
+                    </button>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pagina-actual" href="./operaciones.html">Operaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./editor.html">Editor</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- main: Contenido principal -->
+         <!-- lista de ids:
+            - btn-agregar-figura-1
+            - btn-agregar-figura-2
+
+            - input-radio-circulo
+            - btn-agregar-circulo
+
+            - input-lado-cuadrado
+            - btn-agregar-cuadrado
+
+            - input-altura-rectangulo
+            - input-base-rectangulo
+            - btn-agregar-rectangulo
+
+            - input-area-personalizada
+            - btn-area-personalizada
+         -->
+        <main>
+            <section class="container-xxl">
+                <h1>Operaciones: añadir figuras de ejemplo</h1>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <img src="../assets/img/ejemplo-2-circulos-1-rectangulo.png" class="estilo-modos-img" />
+                            <div class="card-body">
+                                <h3>Ejemplo de 2 circulos de radio 10cm y un rectrangulo 10x10cm^2</h3>
+                                <button class="btn boton-personal" id="btn-agregar-figura-1">Agregar Figuras</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <img src="../assets/img/ejemplo-4-cuadrados-2-circulos.png" class="estilo-modos-img" />
+                            <div class="card-body">
+                                <h3>Ejemplo de 3 cuadrados de lado 2cm y un 2 circulos de radio 4cm</h3>
+                                <button class="btn boton-personal" id="btn-agregar-figura-2">Agregar Figuras</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section class="container-xxl">
+                <h2>Gestión de Figuras Geométricas</h2>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Círculo</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Radio (cm)</span>
+                                    <input type="number" class="form-control" id="input-radio-circulo" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-circulo">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Cuadrado</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Lado (cm)</span>
+                                    <input type="number" class="form-control" id="input-lado-cuadrado" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-cuadrado">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Rectángulo</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Base (cm)</span>
+                                    <input type="number" class="form-control" id="input-base-rectangulo" />
+                                    <span class="input-group-text">Altura (cm)</span>
+                                    <input type="number" class="form-control" id="input-altura-rectangulo" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-rectangulo">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir area personalizada</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Area (cm)</span>
+                                    <input type="number" class="form-control" id="input-area-personalizada" />
+                                    <button class="btn boton-personal" type="button" id="btn-area-personalizada">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- footer: Pie de pagina -->
+        <footer>
+            <div class="bg-oscuro estilo-footer">
+                <div>
+                    <h4>Contacto</h4>
+                    <p>Teléfono: 12 3456-7890</p>
+                    <p>Mail: ejemplo@ejemplo.com</p>
+                </div>
+
+                <div>
+                    <h4>Derechos de Autor</h4>
+                    <p>© 2026 Mi Proyecto. Todos los derechos reservados.</p>
+                </div>
+
+                <div>
+                    <h4>Redes</h4>
+                    <ul class="lista-iconos-simples">
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <img
+                                    src="../assets/img/logo-facebook.png"
+                                    alt="Enlace a la página de Facebook de Zona de Conquista"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <img
+                                    src="../assets/img/logo-youtube.png"
+                                    alt="Enlace al canal de YouTube de Zona de Conquista"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.github.com/">
+                                <img
+                                    src="../assets/img/logo-github.png"
+                                    alt="Enlace al repositorio o perfil de GitHub del proyecto Zona de Conquista"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/">
+                                <img
+                                    src="../assets/img/logo-linkedin.png"
+                                    alt="Enlace al perfil de LinkedIn del proyecto o desarrollador"
+                                />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <!-- BOOTSTRAP JS -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

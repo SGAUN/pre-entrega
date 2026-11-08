@@ -1,0 +1,451 @@
+/* Fuente Audiowide */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* font-family: "Audiowide", sans-serif; */
+body {
+    font-family: "Audiowide", sans-serif;
+    background-color: #061121;
+}
+
+h1 {
+    font-size: 3.75rem;
+    color: #f9ca24;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #66fcf1;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 3rem;
+}
+@media (max-width: 992px) {
+    h2 {
+        font-size: 1.875rem;
+        padding-top: 1rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+h3 {
+    font-size: 2.5rem;
+    color: #7cff44;
+}
+@media (max-width: 992px) {
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+h4 {
+    font-size: 1.5rem;
+    color: #d6eaf8;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+@media (max-width: 992px) {
+    h4 {
+        font-size: 1.25rem;
+    }
+}
+
+h5 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    background-color: #1c3b4a;
+    padding: 1rem;
+    margin: 0;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+p,
+a,
+li {
+    font-size: 1.125rem;
+}
+
+p {
+    color: #d6eaf8;
+}
+
+/* a {
+    color: $color-verde-enlace;
+} */
+li {
+    color: #d6eaf8;
+}
+
+table {
+    color: #d6eaf8;
+}
+
+th {
+    /* background-color: $color-verde-enlace; */
+    color: #0b1d3a;
+}
+
+label {
+    color: #a7bcf7;
+    font-weight: bold;
+}
+
+section {
+    border-radius: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+@media (max-width: 992px) {
+    section {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+@media (max-width: 1400px) {
+    section {
+        border-radius: 0;
+    }
+}
+
+.estilo-footer {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.estilo-footer > div {
+    width: 30%;
+    text-align: center;
+}
+.estilo-footer > div h4 {
+    margin-bottom: 1rem;
+}
+@media (max-width: 992px) {
+    .estilo-footer > div {
+        width: 100%;
+    }
+}
+@media (max-width: 992px) {
+    .estilo-footer {
+        padding: 1rem;
+    }
+}
+
+.lista-iconos-simples img {
+    width: 40px;
+    height: 40px;
+}
+.lista-iconos-simples li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+footer ul img {
+    width: 30px;
+    height: 30px;
+}
+
+nav ul {
+    list-style: none;
+}
+nav ul li a {
+    text-decoration: none;
+}
+
+.logo-nav {
+    height: 50px;
+    width: auto;
+    border-radius: 0.625rem;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.4rem;
+    color: #f0e68c;
+}
+.navbar-nav .pagina-actual {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+.menu-button-text {
+    color: #66fcf1;
+    font-size: 1.6rem;
+    border: 2px solid #66fcf1;
+}
+
+.imagen-portada {
+    background-image: url("../assets/img/inicio-portada.png");
+    background-color: hsla(0, 0%, 0%, 0.50);
+    background-blend-mode: darken;
+}
+
+.estilo-portada {
+    height: 92vh;
+    min-height: 500px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+.estilo-portada h1,
+.estilo-portada h2 {
+    margin: 1rem 0;
+    padding: 0;
+}
+.estilo-portada h2 {
+    text-align: left;
+}
+
+.boton-personal {
+    font-size: 1.25rem;
+    padding: 0.625rem 1.25rem;
+    background-color: #0b1d3a;
+    border-color: #f9ca24;
+    color: #f9ca24;
+}
+.boton-personal:hover {
+    background-color: #0b1d3a;
+    border-color: #7cff44;
+    color: #7cff44;
+    text-decoration: underline;
+}
+@media (max-width: 992px) {
+    .boton-personal {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}
+
+.boton-personal-rojo {
+    font-size: 1.25rem;
+    padding: 0.625rem 1.25rem;
+    background-color: #0b1d3a;
+    border-color: #f9ca24;
+    color: #f9ca24;
+}
+.boton-personal-rojo:hover {
+    background-color: #0b1d3a;
+    border-color: #ff5252;
+    color: #ff5252;
+    text-decoration: underline;
+}
+@media (max-width: 992px) {
+    .boton-personal-rojo {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+}
+
+.descripcion-juego article {
+    align-items: center;
+    padding: 1rem 0rem;
+    margin: 1rem 0rem;
+}
+.descripcion-juego article div {
+    padding: 0rem 3rem 3rem 3rem;
+}
+@media (max-width: 992px) {
+    .descripcion-juego article div {
+        padding: 0;
+        margin: 1rem 0rem;
+    }
+}
+.descripcion-juego article img {
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 992px) {
+    .descripcion-juego article > div:nth-of-type(1) {
+        order: 1;
+    }
+    .descripcion-juego article > div:nth-of-type(2) {
+        order: 0;
+    }
+    .descripcion-juego article > div:nth-of-type(3) {
+        order: 2;
+    }
+    .descripcion-juego article > div:nth-of-type(4) {
+        order: 3;
+    }
+    .descripcion-juego article > div:nth-of-type(5) {
+        order: 5;
+    }
+    .descripcion-juego article > div:nth-of-type(6) {
+        order: 4;
+    }
+}
+.imagen-novedades {
+    background-image: url("../assets/img/noticias-novedades.png");
+}
+
+.imagen-correcciones {
+    background-image: url("../assets/img/noticias-correcciones-de-bug.png");
+}
+
+.cuerpo-noticia {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card-cabecera {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.imagen-thalor {
+    background-image: url("../assets/img/personaje-thalor.png");
+}
+
+.imagen-lunara {
+    background-image: url("../assets/img/personaje-lunara.png");
+}
+
+.imagen-kael {
+    background-image: url("../assets/img/personaje-kael.png");
+}
+
+.imagen-volthok {
+    background-image: url("../assets/img/personaje-volthok.png");
+}
+
+.imagen-lunasa {
+    background-image: url("../assets/img/personaje-lunasa.png");
+}
+
+.imagen-iron {
+    background-image: url("../assets/img/personaje-iron.png");
+}
+
+.estilo-gameplay {
+    padding-bottom: 1rem;
+}
+@media (max-width: 992px) {
+    .estilo-gameplay {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.estilo-tabla {
+    border-color: #445e7c;
+}
+.estilo-tabla thead th {
+    background-color: #0b1d3a;
+    color: #f9ca24;
+}
+.estilo-tabla tbody td {
+    background-color: #22303f;
+    color: #d6eaf8;
+}
+@media (max-width: 992px) {
+    .estilo-tabla {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.estilo-modos-img {
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+@media (max-width: 992px) {
+    .estilo-modos-img {
+        padding: 0;
+        border-radius: 0.25rem;
+    }
+}
+
+.form-registro {
+    padding: 1.5rem;
+}
+
+.form-registro > div > div {
+    margin-bottom: 1rem;
+}
+
+.form-registro > div > div:last-of-type {
+    text-align: right;
+}
+
+.img-filtro-oscuro {
+    filter: brightness(80%);
+}
+
+.bg-oscuro {
+    background-color: #1a2638;
+}
+
+.celda-grilla {
+    margin: 1rem 0;
+}
+.celda-grilla article {
+    height: 100%;
+}
+
+@media (max-width: 992px) {
+    .celda-grilla {
+        margin: 0.25rem 0;
+        padding: 0;
+    }
+}
+.estilo-imagen figure {
+    height: 100%;
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    border-radius: 0.5rem;
+}
+
+.estilo-imagen {
+    padding: 8px;
+    min-height: 250px;
+}
+
+@media (max-width: 768px) {
+    .estilo-imagen figure {
+        min-height: 60vh;
+        border-radius: 0;
+    }
+    .estilo-imagen {
+        padding: 0;
+    }
+}
+.celda-img {
+    padding: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    .celda-img {
+        padding: 0.25rem;
+    }
+}
+/* 
+sass --watch scss/main.scss styles/style.css 
+*/
+
+/*# sourceMappingURL=style.css.map */

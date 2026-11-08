@@ -101,10 +101,10 @@ function menuEditarFiguras(listaFiguras) {
         case 1: //reemplazar area por indice
             reemplazarAreaDeFiguraSegunIndice(listaFiguras);
             break;
-        case 2: //borrar primera   figura
+        case 2: //borrar primera figura
             borrarPrimeraFigura(listaFiguras);
             break;
-        case 3: //borrar ultima   figura
+        case 3: //borrar ultima figura
             borrarUltimaFigura(listaFiguras);
             break;
         case 4: //borrar  figura por indice
@@ -397,4 +397,4 @@ function iniciarSimuladorFiguras() {
     }
 }
 
-iniciarSimuladorFiguras();
+//iniciarSimuladorFiguras();
