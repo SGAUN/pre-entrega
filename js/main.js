@@ -398,3 +398,72 @@ function iniciarSimuladorFiguras() {
 }
 
 //iniciarSimuladorFiguras();
+
+const listaFiguras = [];
+
+function cargarFigura1(listaFiguras) {
+    const figura1 = new Figura2D("circulo", 10, unidadPorDefecto, obtenerColor("circulo"));
+    const figura2 = new Figura2D("circulo", 10, unidadPorDefecto, obtenerColor("circulo"));
+    const figura3 = new Figura2D("rectangulo", 10 * 10, unidadPorDefecto, obtenerColor("rectangulo"));
+    listaFiguras.push(figura1, figura2, figura3);
+} //carga 2 circulos y 1 rectangulo de ejemplo a la lista de figuras
+
+function cargarFigura2(listaFiguras) {
+    const figura1 = new Figura2D("cuadrado", 2 * 2, unidadPorDefecto, obtenerColor("cuadrado"));
+    const figura2 = new Figura2D("cuadrado", 2 * 2, unidadPorDefecto, obtenerColor("cuadrado"));
+    const figura3 = new Figura2D("cuadrado", 2 * 2, unidadPorDefecto, obtenerColor("cuadrado"));
+    const figura4 = new Figura2D("circulo", pi * 4 * 4, unidadPorDefecto, obtenerColor("circulo"));
+    const figura5 = new Figura2D("circulo", pi * 4 * 4, unidadPorDefecto, obtenerColor("circulo"));
+    listaFiguras.push(figura1, figura2, figura3, figura4, figura5);
+} //carga 3 cuadrados de lado 2cm y 2 circulos de radio 4 a la lista de figuras
+
+
+let btnAgregarFigura1 = document.getElementById("btn-agregar-figura-1");
+let btnAgregarFigura2 = document.getElementById("btn-agregar-figura-2");
+
+
+btnAgregarFigura1.onclick = () => {
+    cargarFigura1(listaFiguras);
+    console.log("figuras de ejemplo 1 cargadas correctamente");
+};
+
+btnAgregarFigura2.onclick = () => {
+    cargarFigura2(listaFiguras);
+    console.log("figuras de ejemplo 2 cargadas correctamente");
+};
+
+function actualizarTablaYTotal(listaFiguras) {
+    let cuerpoTablaFiguras = document.getElementById("cuerpo-tabla-figuras");
+    cuerpoTablaFiguras.innerHTML = "";
+    let spanAreaTotal = document.getElementById("span-area-total");
+    let areaTotal = 0;
+
+    listaFiguras.forEach((figura, indice) => {
+        if (figura.unidad == unidadM) {
+            areaTotal += figura.area * 10000;
+        } else {
+            areaTotal += figura.area;
+        }
+
+        let fila = document.createElement("tr");
+        fila.innerHTML = `  <td>${indice}</td>
+                        <td>${figura.id}</td>
+                        <td>${figura.nombre}</td>
+                        <td>${figura.color}</td>
+                        <td>${figura.area}</td>
+                        <td>${figura.unidad}</td>
+                    `;
+        cuerpoTablaFiguras.appendChild(fila);
+    });
+
+    spanAreaTotal.textContent = areaTotal;
+}
+
+
+let btnMostrarLista = document.getElementById("btn-mostrar-lista");
+btnMostrarLista.onclick = () => {
+    actualizarTablaYTotal(listaFiguras);
+    console.log("lista de figuras mostrada en la tabla y area total calculada");
+};
+
+

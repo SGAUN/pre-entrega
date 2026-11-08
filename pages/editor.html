@@ -14,6 +14,9 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="../styles/style.css" />
+
+        <!-- JS -->
+        <script src="../js/main.js" defer></script>
     </head>
     <body>
         <!-- header: Encabezado -->
@@ -56,142 +59,7 @@
             </nav>
         </header>
 
-        <!-- main: Contenido principal -->
-        <!-- lista de ids:
-            - cuerpo-tabla-figuras
-            - span-area-total
-
-            - btn-ordenar-asc
-            - btn-ordenar-desc
-            - btn-mostrar-todas
-
-            - input-buscar-id
-            - btn-buscar-id
-
-            - input-buscar-area
-            - btn-buscar-area
-
-            - btn-borrar-primera
-            - btn-borrar-ultima
-
-            - input-indice-borrar
-            - btn-borrar-indice
-
-            - input-indice-reemplazar
-            - input-nuevo-valor-area
-            - btn-reemplazar
-
-            - input-indice-convertir
-            - btn-a-metros
-            - btn-a-cm
-            -->
-        <main>
-            <section class="container-xxl">
-                <h1>Gestor de Lista de Áreas</h1>
-                <h2>Listado de Figuras Actuales</h2>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover estilo-tabla">
-                        <thead>
-                            <tr>
-                                <th>Índice</th>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Área</th>
-                                <th>Unidad</th>
-                                <th>Color</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpo-tabla-figuras">
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>Círculo</td>
-                                <td>78.54</td>
-                                <td>cm²</td>
-                                <td>rojo</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <h3>
-                        Área Total acumulada:
-                        <span id="span-area-total">0</span>
-                        cm²
-                    </h3>
-                </div>
-            </section>
-
-            <section class="container-xxl bg-oscuro">
-                <h2>Visualizacion y Filtros</h2>
-                <div class="row">
-                    <div class="col-xl-4 celda-grilla">
-                        <button class="btn boton-personal w-100" id="btn-ordenar-asc">Ver Ascendente (Área)</button>
-                    </div>
-                    <div class="col-xl-4 celda-grilla">
-                        <button class="btn boton-personal w-100" id="btn-ordenar-desc">Ver Descendente (Área)</button>
-                    </div>
-                    <div class="col-xl-4 celda-grilla">
-                        <button class="btn boton-personal w-100" id="btn-mostrar-todas">Ver Lista Original</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-6 celda-grilla">
-                        <h3>Buscar por ID</h3>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="input-buscar-id" />
-                            <button class="btn boton-personal" id="btn-buscar-id">Buscar ID</button>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 celda-grilla">
-                        <h3>Buscar por Área</h3>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="input-buscar-area" />
-                            <button class="btn boton-personal" id="btn-buscar-area">Buscar Área</button>
-                        </div>
-                    </div>
-                    <h2>Edicion y Eliminacion</h2>
-                    <div class="row">
-                        <div class="col-xl-4 celda-grilla">
-                            <button class="btn boton-personal-rojo w-100" id="btn-borrar-primera">
-                                Borrar Primera Figura
-                            </button>
-                        </div>
-                        <div class="col-xl-4 celda-grilla">
-                            <button class="btn boton-personal-rojo w-100" id="btn-borrar-ultima">
-                                Borrar Última Figura
-                            </button>
-                        </div>
-                        <div class="col-xl-4 celda-grilla">
-                            <div class="input-group">
-                                <span class="input-group-text">indice</span>
-                                <input type="number" class="form-control" id="input-indice-borrar" />
-                                <button class="btn boton-personal-rojo" id="btn-borrar-indice">Borrar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 celda-grilla">
-                        <h3>reemplazar</h3>
-                        <div class="input-group">
-                            <span class="input-group-text">indice</span>
-                            <input type="number" class="form-control" id="input-indice-reemplazar" />
-                            <span class="input-group-text">nuevo valor</span>
-                            <input type="number" class="form-control" id="input-nuevo-valor-area" />
-                            <button class="btn boton-personal" id="btn-reemplazar">Reemplazar</button>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 celda-grilla">
-                        <h3>convertir</h3>
-                        <div class="input-group">
-                            <span class="input-group-text">indice</span>
-                            <input type="number" class="form-control" id="input-indice-convertir" />
-                            <button class="btn boton-personal w" id="btn-a-metros">A Metros</button>
-                            <button class="btn boton-personal" id="btn-a-cm">A Cm</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        
 
         <!-- footer: Pie de pagina -->
         <footer>

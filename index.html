@@ -14,6 +14,9 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="./styles/style.css" />
+
+        <!-- JS -->
+        <script src="./js/main.js" defer></script>
     </head>
     <body>
         <!-- header: Encabezado -->
@@ -73,6 +76,241 @@
                     </div>
                 </div>
             </picture>
+
+            <!-- lista de ids:
+            *- btn-agregar-figura-1
+            *- btn-agregar-figura-2
+
+            - input-radio-circulo
+            - btn-agregar-circulo
+
+            - input-lado-cuadrado
+            - btn-agregar-cuadrado
+
+            - input-altura-rectangulo
+            - input-base-rectangulo
+            - btn-agregar-rectangulo
+
+            - input-area-personalizada
+            - btn-area-personalizada
+         -->
+            <section class="container-xxl">
+                <h2>Operaciones: añadir figuras de ejemplo</h2>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <img src="./assets/img/ejemplo-2-circulos-1-rectangulo.png" class="estilo-modos-img" />
+                            <div class="card-body">
+                                <h3>Ejemplo de 2 circulos de radio 10cm y un rectrangulo 10x10cm^2</h3>
+                                <button class="btn boton-personal" id="btn-agregar-figura-1">Agregar Figuras</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <img src="./assets/img/ejemplo-4-cuadrados-2-circulos.png" class="estilo-modos-img" />
+                            <div class="card-body">
+                                <h3>Ejemplo de 3 cuadrados de lado 2cm y un 2 circulos de radio 4cm</h3>
+                                <button class="btn boton-personal" id="btn-agregar-figura-2">Agregar Figuras</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section class="container-xxl">
+                <h2>Gestión de Figuras Geométricas</h2>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Círculo</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Radio (cm)</span>
+                                    <input type="number" class="form-control" id="input-radio-circulo" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-circulo">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Cuadrado</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Lado (cm)</span>
+                                    <input type="number" class="form-control" id="input-lado-cuadrado" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-cuadrado">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir Rectángulo</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Base (cm)</span>
+                                    <input type="number" class="form-control" id="input-base-rectangulo" />
+                                    <span class="input-group-text">Altura (cm)</span>
+                                    <input type="number" class="form-control" id="input-altura-rectangulo" />
+                                    <button class="btn boton-personal" type="button" id="btn-agregar-rectangulo">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <article class="card bg-oscuro">
+                            <div class="card-body">
+                                <h3>Añadir area personalizada</h3>
+                                <div class="input-group">
+                                    <span class="input-group-text">Area (cm)</span>
+                                    <input type="number" class="form-control" id="input-area-personalizada" />
+                                    <button class="btn boton-personal" type="button" id="btn-area-personalizada">
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- lista de ids:
+            - cuerpo-tabla-figuras
+            - span-area-total
+
+            - btn-ordenar-asc
+            - btn-ordenar-desc
+            - btn-mostrar-lista
+
+            - input-buscar-id
+            - btn-buscar-id
+
+            - input-buscar-area
+            - btn-buscar-area
+
+            - btn-borrar-primera
+            - btn-borrar-ultima
+
+            - input-indice-borrar
+            - btn-borrar-indice
+
+            - input-indice-reemplazar
+            - input-nuevo-valor-area
+            - btn-reemplazar
+
+            - input-indice-convertir
+            - btn-a-metros
+            - btn-a-cm
+            -->
+
+            <h2>Visualizacion y Filtros</h2>
+            <section class="container-xxl bg-oscuro">
+                <div class="row">
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100" id="btn-ordenar-asc">Ver Ascendente (Área)</button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100" id="btn-ordenar-desc">Ver Descendente (Área)</button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100" id="btn-mostrar-lista">Ver Lista</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>Buscar por ID</h3>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="input-buscar-id" />
+                            <button class="btn boton-personal" id="btn-buscar-id">Buscar ID</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>Buscar por Área</h3>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="input-buscar-area" />
+                            <button class="btn boton-personal" id="btn-buscar-area">Buscar Área</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h2>Edicion y Eliminacion</h2>
+            <section class="container-xxl bg-oscuro">
+                <div class="row">
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal-rojo w-100" id="btn-borrar-primera">
+                            Borrar Primera Figura
+                        </button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal-rojo w-100" id="btn-borrar-ultima">
+                            Borrar Última Figura
+                        </button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input type="number" class="form-control" id="input-indice-borrar" />
+                            <button class="btn boton-personal-rojo" id="btn-borrar-indice">Borrar</button>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>reemplazar</h3>
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input type="number" class="form-control" id="input-indice-reemplazar" />
+                            <span class="input-group-text">nuevo valor</span>
+                            <input type="number" class="form-control" id="input-nuevo-valor-area" />
+                            <button class="btn boton-personal" id="btn-reemplazar">Reemplazar</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>convertir</h3>
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input type="number" class="form-control" id="input-indice-convertir" />
+                            <button class="btn boton-personal w" id="btn-a-metros">A Metros</button>
+                            <button class="btn boton-personal" id="btn-a-cm">A Cm</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h2>Listado de Figuras Actuales</h2>
+            <section class="container-xxl">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover estilo-tabla">
+                        <thead>
+                            <tr>
+                                <th>Índice</th>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Área</th>
+                                <th>Unidad</th>
+                                <th>Color</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-figuras">
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>
+                        Área Total acumulada:
+                        <span id="span-area-total">0</span>
+                        cm²
+                    </h3>
+                </div>
+            </section>
         </main>
 
         <!-- footer: Pie de pagina -->
