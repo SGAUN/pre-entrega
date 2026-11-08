@@ -66,16 +66,6 @@ h4 {
     }
 }
 
-h5 {
-    font-size: 2.5rem;
-    color: #ffffff;
-    background-color: #1c3b4a;
-    padding: 1rem;
-    margin: 0;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-}
-
 p,
 a,
 li {
@@ -194,7 +184,7 @@ nav ul li a {
 
 .imagen-portada {
     background-image: url("../assets/img/inicio-portada.png");
-    background-color: hsla(0, 0%, 0%, 0.50);
+    background-color: hsla(0, 0%, 0%, 0.5);
     background-blend-mode: darken;
 }
 
@@ -258,99 +248,6 @@ nav ul li a {
     }
 }
 
-.descripcion-juego article {
-    align-items: center;
-    padding: 1rem 0rem;
-    margin: 1rem 0rem;
-}
-.descripcion-juego article div {
-    padding: 0rem 3rem 3rem 3rem;
-}
-@media (max-width: 992px) {
-    .descripcion-juego article div {
-        padding: 0;
-        margin: 1rem 0rem;
-    }
-}
-.descripcion-juego article img {
-    border-radius: 0.5rem;
-}
-
-@media (min-width: 992px) {
-    .descripcion-juego article > div:nth-of-type(1) {
-        order: 1;
-    }
-    .descripcion-juego article > div:nth-of-type(2) {
-        order: 0;
-    }
-    .descripcion-juego article > div:nth-of-type(3) {
-        order: 2;
-    }
-    .descripcion-juego article > div:nth-of-type(4) {
-        order: 3;
-    }
-    .descripcion-juego article > div:nth-of-type(5) {
-        order: 5;
-    }
-    .descripcion-juego article > div:nth-of-type(6) {
-        order: 4;
-    }
-}
-.imagen-novedades {
-    background-image: url("../assets/img/noticias-novedades.png");
-}
-
-.imagen-correcciones {
-    background-image: url("../assets/img/noticias-correcciones-de-bug.png");
-}
-
-.cuerpo-noticia {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.card-cabecera {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-
-.imagen-thalor {
-    background-image: url("../assets/img/personaje-thalor.png");
-}
-
-.imagen-lunara {
-    background-image: url("../assets/img/personaje-lunara.png");
-}
-
-.imagen-kael {
-    background-image: url("../assets/img/personaje-kael.png");
-}
-
-.imagen-volthok {
-    background-image: url("../assets/img/personaje-volthok.png");
-}
-
-.imagen-lunasa {
-    background-image: url("../assets/img/personaje-lunasa.png");
-}
-
-.imagen-iron {
-    background-image: url("../assets/img/personaje-iron.png");
-}
-
-.estilo-gameplay {
-    padding-bottom: 1rem;
-}
-@media (max-width: 992px) {
-    .estilo-gameplay {
-        padding-left: 0;
-        padding-right: 0;
-        padding-bottom: 0.5rem;
-    }
-}
-
 .estilo-tabla {
     border-color: #445e7c;
 }
@@ -380,22 +277,6 @@ nav ul li a {
     }
 }
 
-.form-registro {
-    padding: 1.5rem;
-}
-
-.form-registro > div > div {
-    margin-bottom: 1rem;
-}
-
-.form-registro > div > div:last-of-type {
-    text-align: right;
-}
-
-.img-filtro-oscuro {
-    filter: brightness(80%);
-}
-
 .bg-oscuro {
     background-color: #1a2638;
 }
@@ -413,39 +294,3 @@ nav ul li a {
         padding: 0;
     }
 }
-.estilo-imagen figure {
-    height: 100%;
-    background-size: cover;
-    background-position: center 20%;
-    background-repeat: no-repeat;
-    border-radius: 0.5rem;
-}
-
-.estilo-imagen {
-    padding: 8px;
-    min-height: 250px;
-}
-
-@media (max-width: 768px) {
-    .estilo-imagen figure {
-        min-height: 60vh;
-        border-radius: 0;
-    }
-    .estilo-imagen {
-        padding: 0;
-    }
-}
-.celda-img {
-    padding: 0.5rem;
-}
-
-@media (max-width: 992px) {
-    .celda-img {
-        padding: 0.25rem;
-    }
-}
-/* 
-sass --watch scss/main.scss styles/style.css 
-*/
-
-/*# sourceMappingURL=style.css.map */
