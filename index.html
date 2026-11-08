@@ -77,23 +77,51 @@
                 </div>
             </picture>
 
-            <!-- lista de ids:
-            *- btn-agregar-figura-1
-            *- btn-agregar-figura-2
+            <!-- lista de ids: añadir figuras 
+                s- btn-agregar-figura-1
+                s- btn-agregar-figura-2
 
-            - input-radio-circulo
-            - btn-agregar-circulo
+                s- input-radio-circulo
+                s- btn-agregar-circulo
 
-            - input-lado-cuadrado
-            - btn-agregar-cuadrado
+               s - input-lado-cuadrado
+                s- btn-agregar-cuadrado
 
-            - input-altura-rectangulo
-            - input-base-rectangulo
-            - btn-agregar-rectangulo
+                s- input-altura-rectangulo
+                s- input-base-rectangulo
+                s- btn-agregar-rectangulo
 
-            - input-area-personalizada
-            - btn-area-personalizada
-         -->
+                s- input-area-personalizada
+                s- btn-area-personalizada
+            -->
+            <!-- lista de ids: editar y eliminar figuras
+                - cuerpo-tabla-figuras
+                - span-area-total
+
+                - btn-ordenar-asc
+                - btn-ordenar-desc
+                s- btn-mostrar-lista
+
+                - input-buscar-id
+                - btn-buscar-id
+
+                - input-buscar-area
+                - btn-buscar-area
+
+                - btn-borrar-primera
+                - btn-borrar-ultima
+
+                - input-indice-borrar
+                - btn-borrar-indice
+
+                - input-indice-reemplazar
+                - input-nuevo-valor-area
+                - btn-reemplazar
+
+                - input-indice-convertir
+                - btn-a-metros
+                - btn-a-cm
+            -->
             <section class="container-xxl">
                 <h2>Operaciones: añadir figuras de ejemplo</h2>
                 <div class="row">
@@ -180,35 +208,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- lista de ids:
-            - cuerpo-tabla-figuras
-            - span-area-total
-
-            - btn-ordenar-asc
-            - btn-ordenar-desc
-            - btn-mostrar-lista
-
-            - input-buscar-id
-            - btn-buscar-id
-
-            - input-buscar-area
-            - btn-buscar-area
-
-            - btn-borrar-primera
-            - btn-borrar-ultima
-
-            - input-indice-borrar
-            - btn-borrar-indice
-
-            - input-indice-reemplazar
-            - input-nuevo-valor-area
-            - btn-reemplazar
-
-            - input-indice-convertir
-            - btn-a-metros
-            - btn-a-cm
-            -->
 
             <h2>Visualizacion y Filtros</h2>
             <section class="container-xxl bg-oscuro">
@@ -298,14 +297,12 @@
                                 <th>Color</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo-tabla-figuras">
-                           
-                        </tbody>
+                        <tbody id="cuerpo-tabla-figuras"></tbody>
                     </table>
                 </div>
                 <div>
                     <h3>
-                        Área Total acumulada:
+                        Área Total:
                         <span id="span-area-total">0</span>
                         cm²
                     </h3>

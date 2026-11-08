@@ -417,20 +417,8 @@ function cargarFigura2(listaFiguras) {
     listaFiguras.push(figura1, figura2, figura3, figura4, figura5);
 } //carga 3 cuadrados de lado 2cm y 2 circulos de radio 4 a la lista de figuras
 
-
 let btnAgregarFigura1 = document.getElementById("btn-agregar-figura-1");
 let btnAgregarFigura2 = document.getElementById("btn-agregar-figura-2");
-
-
-btnAgregarFigura1.onclick = () => {
-    cargarFigura1(listaFiguras);
-    console.log("figuras de ejemplo 1 cargadas correctamente");
-};
-
-btnAgregarFigura2.onclick = () => {
-    cargarFigura2(listaFiguras);
-    console.log("figuras de ejemplo 2 cargadas correctamente");
-};
 
 function actualizarTablaYTotal(listaFiguras) {
     let cuerpoTablaFiguras = document.getElementById("cuerpo-tabla-figuras");
@@ -447,18 +435,27 @@ function actualizarTablaYTotal(listaFiguras) {
 
         let fila = document.createElement("tr");
         fila.innerHTML = `  <td>${indice}</td>
-                        <td>${figura.id}</td>
-                        <td>${figura.nombre}</td>
-                        <td>${figura.color}</td>
-                        <td>${figura.area}</td>
-                        <td>${figura.unidad}</td>
-                    `;
+                            <td>${figura.id}</td>
+                            <td>${figura.nombre}</td>
+                            <td>${figura.area}</td>
+                            <td>${figura.unidad}</td>
+                            <td>${figura.color}</td>`;
         cuerpoTablaFiguras.appendChild(fila);
     });
-
-    spanAreaTotal.textContent = areaTotal;
+    spanAreaTotal.textContent = areaTotal.toFixed(2);//con 2 decimales
 }
 
+btnAgregarFigura1.onclick = () => {
+    cargarFigura1(listaFiguras);
+    console.log("figuras de ejemplo 1 cargadas correctamente");
+    actualizarTablaYTotal(listaFiguras);
+};
+
+btnAgregarFigura2.onclick = () => {
+    cargarFigura2(listaFiguras);
+    console.log("figuras de ejemplo 2 cargadas correctamente");
+    actualizarTablaYTotal(listaFiguras);
+};
 
 let btnMostrarLista = document.getElementById("btn-mostrar-lista");
 btnMostrarLista.onclick = () => {
@@ -466,4 +463,72 @@ btnMostrarLista.onclick = () => {
     console.log("lista de figuras mostrada en la tabla y area total calculada");
 };
 
+let inputRadioCirculo = document.getElementById("input-radio-circulo");
+let btnAgregarCirculo = document.getElementById("btn-agregar-circulo");
+btnAgregarCirculo.onclick = () => {
+    let radio = Number(inputRadioCirculo.value);
+    if (!esNumeroMayorACero(radio)) {
+        alert("el radio del circulo ingresado debe ser un numero mayor a 0");
+        return;
+    }
+    const areaCirculo = pi * radio ** 2;
+    const nuevaFigura = new Figura2D("circulo", areaCirculo, unidadPorDefecto, obtenerColor("circulo"));
+    listaFiguras.push(nuevaFigura);
+    console.log("circulo agregado correctamente con area:", areaCirculo);
+    inputRadioCirculo.value = "";
+    actualizarTablaYTotal(listaFiguras);
+};
+
+let inputLadoCuadrado = document.getElementById("input-lado-cuadrado");
+let btnAgregarCuadrado = document.getElementById("btn-agregar-cuadrado");
+btnAgregarCuadrado.onclick = () => {
+    let lado = Number(inputLadoCuadrado.value);
+    if (!esNumeroMayorACero(lado)) {
+        alert("el lado del cuadrado ingresado debe ser un numero mayor a 0");
+        return;
+    }
+    const areaCuadrado = lado * lado;
+    const nuevaFigura = new Figura2D("cuadrado", areaCuadrado, unidadPorDefecto, obtenerColor("cuadrado"));
+    listaFiguras.push(nuevaFigura);
+    console.log("cuadrado agregado correctamente con area:", areaCuadrado);
+    inputLadoCuadrado.value = "";
+    actualizarTablaYTotal(listaFiguras);
+}
+
+let inputBaseRectangulo = document.getElementById("input-base-rectangulo");
+let inputAlturaRectangulo = document.getElementById("input-altura-rectangulo");
+let btnAgregarRectangulo = document.getElementById("btn-agregar-rectangulo");
+
+btnAgregarRectangulo.onclick = () => {
+    let base = Number(inputBaseRectangulo.value);
+    let altura = Number(inputAlturaRectangulo.value);
+    if (!esNumeroMayorACero(base) || !esNumeroMayorACero(altura)) {
+        alert("la base y la altura del rectangulo ingresadas deben ser numeros mayores a 0");
+        return;
+    }
+
+    const areaRectangulo = base * altura;
+    const nuevaFigura = new Figura2D("rectangulo", areaRectangulo, unidadPorDefecto, obtenerColor("rectangulo"));
+    listaFiguras.push(nuevaFigura);
+    console.log("rectangulo agregado correctamente con area:", areaRectangulo);
+    inputBaseRectangulo.value = "";
+    inputAlturaRectangulo.value = "";
+    actualizarTablaYTotal(listaFiguras);
+};
+
+let inputAreaPersonalizada = document.getElementById("input-area-personalizada");
+let btnAreaPersonalizado = document.getElementById("btn-area-personalizada");
+
+btnAreaPersonalizado.onclick = () => {
+    let area = Number(inputAreaPersonalizada.value);
+    if (!esNumeroMayorACero(area)) {
+        alert("el area personalizada ingresada debe ser un numero mayor a 0");
+        return;
+    }
+    const nuevaFigura = new Figura2D("personalizado", area, unidadPorDefecto, "blanco");
+    listaFiguras.push(nuevaFigura);
+    console.log("figura personalizada agregada correctamente con area:", area);
+    inputAreaPersonalizada.value = "";
+    actualizarTablaYTotal(listaFiguras);
+}
 
