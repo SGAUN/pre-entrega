@@ -24,7 +24,7 @@ class Figura2D {
     }
 }
 
-function convertirAreaDeFigura(listaFiguras, unidad) {
+/*function convertirAreaDeFigura(listaFiguras, unidad) {
     let indice = parseInt(prompt("ingrese el indice de la figura que desea convertir a " + unidad));
     if (isNaN(indice) || indice < 0 || indice >= listaFiguras.length) {
         console.log("indice invalido");
@@ -41,7 +41,6 @@ function convertirAreaDeFigura(listaFiguras, unidad) {
     }
     listaFiguras[indice].mostrarDatos("figura convertida a " + unidad + ":");
 } //5 y 6 convierte el area de una figura a metros o centimetros segun la unidad
-
 function borrarFiguraSegunIndice(listaFiguras) {
     let indiceBorrar = parseInt(prompt("ingrese el indice de la figura que desea borrar"));
     if (isNaN(indiceBorrar) || indiceBorrar < 0 || indiceBorrar >= listaFiguras.length) {
@@ -51,19 +50,18 @@ function borrarFiguraSegunIndice(listaFiguras) {
     let figuraBorrada = listaFiguras.splice(indiceBorrar, 1)[0];
     figuraBorrada.mostrarDatos(" figura borrada:");
 } //4 borra una figura segun el indice
-
 function borrarUltimaFigura(listaFiguras) {
     const ultimaFigura = listaFiguras.pop();
     ultimaFigura.mostrarDatos("ultima figura borrada:");
 } //3 borra la ultima area agregada
-
 function borrarPrimeraFigura(listaFiguras) {
     const primeraFigura = listaFiguras.shift();
     primeraFigura.mostrarDatos("primera figura borrada:");
 } //2 borra la primera area agregada
-
+*/
 const esNumeroMayorACero = (numero = 0) => !isNaN(numero) && numero > 0; //comprueba si el valor ingresado es un numero mayor a 0
 
+/*
 function reemplazarAreaDeFiguraSegunIndice(listaFiguras) {
     let indiceReemplazar = parseInt(prompt("ingrese el indice del area que desea reemplazar"));
     if (isNaN(indiceReemplazar) || indiceReemplazar < 0 || indiceReemplazar >= listaFiguras.length) {
@@ -80,7 +78,6 @@ function reemplazarAreaDeFiguraSegunIndice(listaFiguras) {
     listaFiguras[indiceReemplazar].unidad = unidadPorDefecto;
     listaFiguras[indiceReemplazar].mostrarDatos("figura reemplazada:");
 } //1 reemplaza un area de una figura por otra
-
 function menuEditarFiguras(listaFiguras) {
     if (listaFiguras.length == 0) {
         console.log("la lista de  figuras esta vacia");
@@ -121,21 +118,6 @@ function menuEditarFiguras(listaFiguras) {
     }
 }
 
-function buscarFiguraPorID(listaFiguras) {
-    let idBuscado = parseInt(prompt("ingrese el ID de la figura que desea buscar"));
-    if (!esNumeroMayorACero(idBuscado)) {
-        console.log("el ID debe ser un numero entero positivo");
-        return;
-    }
-
-    const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
-    if (figuraEncontrada) {
-        figuraEncontrada.mostrarDatos("figura encontrada:");
-        return;
-    }
-    console.log("figura no encontrada con ese ID");
-} //7 busca un figura segun el ID y lo muestra
-
 function buscarFigurasPorArea(listaFiguras) {
     let areaBuscada = Number(
         prompt("ingrese el valor del area de la figura que desea buscar (en " + unidadPorDefecto + ")"),
@@ -157,7 +139,6 @@ function buscarFigurasPorArea(listaFiguras) {
         figura.mostrarDatos("indice: " + indice + " |");
     });
 } //6 busca si en lal ista de figuras existe una figura con el area ingresada
-
 function mostrarAreaTotal(listaFiguras) {
     const areaTotal = listaFiguras.reduce((acumulador, elemento) => {
         if (elemento.unidad == unidadM) {
@@ -168,26 +149,6 @@ function mostrarAreaTotal(listaFiguras) {
     }, 0);
     console.log("el area total de todas las figuras es:", areaTotal, unidadPorDefecto);
 } //5 muestra el calculo del area total de todas las figuras
-
-function mostrarListaFiguras(listaFiguras, orden = "") {
-    let figurasAProcesar = listaFiguras;
-
-    if (orden === "ascendente") {
-        console.log("lista de figuras ordenadas ascendentemente:");
-        figurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
-    } else if (orden === "descendente") {
-        console.log("lista de figuras ordenadas descendentemente:");
-        figurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
-    } else {
-        console.log("lista de figuras guardadas:");
-    }
-
-    figurasAProcesar.forEach((figura) => {
-        let indice = listaFiguras.indexOf(figura);
-        figura.mostrarDatos("indice: " + indice + " |");
-    });
-} //1 2 3 muestra lista de figuras guardadas
-
 function mostrarFigurasPorRango(listaFiguras) {
     let valorPrimero = Number(prompt("ingrese el primer valor del rango (en " + unidadPorDefecto + ")"));
     if (!esNumeroMayorACero(valorPrimero)) {
@@ -217,7 +178,6 @@ function mostrarFigurasPorRango(listaFiguras) {
         figura.mostrarDatos("indice: " + indiceReal + " |");
     });
 } //4 muestra las figuras que estan dentro de un rango de 2 valores
-
 function menuInformacionFiguras(listaFiguras) {
     if (listaFiguras.length == 0) {
         console.log("la lista de figuras esta vacia");
@@ -261,7 +221,6 @@ function menuInformacionFiguras(listaFiguras) {
             console.log("volviendo al menu principal");
     }
 }
-
 function cargarFigurasEjemplo(listaFiguras) {
     let multiplicador = listaFiguras.length + 1;
 
@@ -271,7 +230,6 @@ function cargarFigurasEjemplo(listaFiguras) {
     listaFiguras.push(figura1, figura2, figura3);
     console.log("figuras de ejemplo cargadas correctamente");
 } //5 carga figuras de ejemplo siempre con valores de area distintos entre si
-
 function ingresarAreaPersonalizada() {
     let area = Number(prompt("ingrese el valor del area personalizada (en " + unidadPorDefecto + ")"));
     if (!esNumeroMayorACero(area)) {
@@ -280,9 +238,12 @@ function ingresarAreaPersonalizada() {
     }
     return area;
 } //4 ingresa un area personalizada y la devuelve
-
+*/
+/*
 const obtenerAreaRectangulo = (base = 0, altura = 0) => base * altura; //con base y altura calcula el area del rectangulo
+*/
 
+/*
 function calcularAreaRectangulo() {
     let base = Number(prompt("ingrese la base del rectangulo"));
     if (!esNumeroMayorACero(base)) {
@@ -296,7 +257,6 @@ function calcularAreaRectangulo() {
     }
     return obtenerAreaRectangulo(base, altura);
 } //3 calcula el area del rectangulo y la devuelve
-
 function calcularAreaCuadrado() {
     let lado = Number(prompt("ingrese el lado del cuadrado"));
     if (!esNumeroMayorACero(lado)) {
@@ -305,7 +265,6 @@ function calcularAreaCuadrado() {
     }
     return obtenerAreaRectangulo(lado, lado);
 } //2 calcula el area del cuadrado y la devuelve
-
 function calcularAreaCirculo() {
     let radio = Number(prompt("ingrese el radio del circulo"));
     if (!esNumeroMayorACero(radio)) {
@@ -314,6 +273,9 @@ function calcularAreaCirculo() {
     }
     return pi * radio ** 2;
 } //1 calcula el area del circulo y la devuelve
+*/
+/*
+*/
 
 function obtenerColor(nombreFigura) {
     switch (nombreFigura) {
@@ -327,7 +289,7 @@ function obtenerColor(nombreFigura) {
             return "blanco";
     }
 } //retorna un color segun el nombre de una figura, codigo colores: rojo verde y azul se usa para areas calculadas por el simulador y sin modificar, elcolor blanco para otro caso
-
+/*
 function agregarFigura(funcion, listaFiguras, nombreFigura) {
     const area = funcion();
     if (area != null) {
@@ -337,7 +299,8 @@ function agregarFigura(funcion, listaFiguras, nombreFigura) {
         nuevaFigura.mostrarDatos("figura guardada correctamente:");
     }
 } //agrega un area a la lista de areas
-
+ */
+/*
 function menuAgregarFiguras(listaFiguras) {
     let opcion = parseInt(
         prompt(
@@ -396,18 +359,97 @@ function iniciarSimuladorFiguras() {
         }
     }
 }
+*/
 
-//iniciarSimuladorFiguras();
+//iniciarSimuladorFiguras();iniciarSimuladorFiguras();iniciarSimuladorFiguras();iniciarSimuladorFiguras();
 
 const listaFiguras = [];
 
+function buscarBotonActivo(listaBotones) {
+    for (let boton of listaBotones) {
+        if (boton.classList.contains("activo")) {
+            return boton;
+        }
+    }
+    return null;
+} //busca el boton activo de una lista de botones y lo devuelve
+
+//CUERPO DE LA TABLA Y SPAN DEL AREA TOTAL
+let cuerpoTablaFiguras = document.getElementById("cuerpo-tabla-figuras");
+let spanAreaTotal = document.getElementById("span-area-total");
+function actualizarTablaYTotal(listaFiguras) {
+    cuerpoTablaFiguras.innerHTML = "";
+    let areaTotal = 0;
+
+    let figurasAProcesar = listaFiguras; //creo una copia de la lista para no perder le orden
+    let botonActivo = buscarBotonActivo([btnVerLista, btnOrdenarAsc, btnOrdenarDesc]);
+
+    if (botonActivo == btnOrdenarAsc) {
+        figurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
+    } else if (botonActivo == btnOrdenarDesc) {
+        figurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
+    } //muestra la lista segun el boton seleccionado de orden
+
+    figurasAProcesar.forEach((figura) => {
+        let indice = listaFiguras.indexOf(figura); //busca indice original de la figura
+
+        if (figura.unidad == unidadM) {
+            areaTotal += figura.area * 10000;
+        } else {
+            areaTotal += figura.area;
+        }
+
+        let fila = document.createElement("tr");
+        fila.innerHTML = `<td>${indice}</td>
+                    <td>${figura.id}</td>
+                    <td>${figura.nombre}</td>
+                    <td>${figura.area}</td>
+                    <td>${figura.unidad}</td>
+                    <td>${figura.color}</td>`;
+        cuerpoTablaFiguras.appendChild(fila);
+    });
+
+    spanAreaTotal.textContent = areaTotal.toFixed(2);
+}
+
+//BOTONES DE ORDENAR Y VER LISTA
+let btnVerLista = document.getElementById("btn-ver-lista");
+let btnOrdenarAsc = document.getElementById("btn-ordenar-asc");
+let btnOrdenarDesc = document.getElementById("btn-ordenar-desc");
+function activarBoton(botonSeleccionado) {
+    const listaBotones = [btnVerLista, btnOrdenarAsc, btnOrdenarDesc];
+    listaBotones.forEach((boton) => boton.classList.remove("activo")); //elimino la clase "activo" de todos los botones
+    botonSeleccionado.classList.add("activo");
+    console.log("boton activo:", botonSeleccionado.id);
+} //primero quito la clase "activo" de los 3 botones y luego al botonSeleccionado le agregar el "activo"
+btnVerLista.onclick = () => {
+    activarBoton(btnVerLista);
+    actualizarTablaYTotal(listaFiguras);
+};
+btnOrdenarAsc.onclick = () => {
+    activarBoton(btnOrdenarAsc);
+    actualizarTablaYTotal(listaFiguras);
+};
+btnOrdenarDesc.onclick = () => {
+    activarBoton(btnOrdenarDesc);
+    actualizarTablaYTotal(listaFiguras);
+}; //
+
+//BOTON DE AGREGAR FIGURA 1
 function cargarFigura1(listaFiguras) {
     const figura1 = new Figura2D("circulo", 10, unidadPorDefecto, obtenerColor("circulo"));
     const figura2 = new Figura2D("circulo", 10, unidadPorDefecto, obtenerColor("circulo"));
     const figura3 = new Figura2D("rectangulo", 10 * 10, unidadPorDefecto, obtenerColor("rectangulo"));
     listaFiguras.push(figura1, figura2, figura3);
 } //carga 2 circulos y 1 rectangulo de ejemplo a la lista de figuras
+let btnAgregarFigura1 = document.getElementById("btn-agregar-figura-1");
+btnAgregarFigura1.onclick = () => {
+    cargarFigura1(listaFiguras);
+    console.log("figuras de ejemplo 1 cargadas correctamente");
+    actualizarTablaYTotal(listaFiguras);
+}; //al hacer click carga figuras de ejemplo 1
 
+//BOTON DE AGREGAR FIGURA 2
 function cargarFigura2(listaFiguras) {
     const figura1 = new Figura2D("cuadrado", 2 * 2, unidadPorDefecto, obtenerColor("cuadrado"));
     const figura2 = new Figura2D("cuadrado", 2 * 2, unidadPorDefecto, obtenerColor("cuadrado"));
@@ -416,53 +458,33 @@ function cargarFigura2(listaFiguras) {
     const figura5 = new Figura2D("circulo", pi * 4 * 4, unidadPorDefecto, obtenerColor("circulo"));
     listaFiguras.push(figura1, figura2, figura3, figura4, figura5);
 } //carga 3 cuadrados de lado 2cm y 2 circulos de radio 4 a la lista de figuras
-
-let btnAgregarFigura1 = document.getElementById("btn-agregar-figura-1");
 let btnAgregarFigura2 = document.getElementById("btn-agregar-figura-2");
-
-function actualizarTablaYTotal(listaFiguras) {
-    let cuerpoTablaFiguras = document.getElementById("cuerpo-tabla-figuras");
-    cuerpoTablaFiguras.innerHTML = "";
-    let spanAreaTotal = document.getElementById("span-area-total");
-    let areaTotal = 0;
-
-    listaFiguras.forEach((figura, indice) => {
-        if (figura.unidad == unidadM) {
-            areaTotal += figura.area * 10000;
-        } else {
-            areaTotal += figura.area;
-        }
-
-        let fila = document.createElement("tr");
-        fila.innerHTML = `  <td>${indice}</td>
-                            <td>${figura.id}</td>
-                            <td>${figura.nombre}</td>
-                            <td>${figura.area}</td>
-                            <td>${figura.unidad}</td>
-                            <td>${figura.color}</td>`;
-        cuerpoTablaFiguras.appendChild(fila);
-    });
-    spanAreaTotal.textContent = areaTotal.toFixed(2);//con 2 decimales
-}
-
-btnAgregarFigura1.onclick = () => {
-    cargarFigura1(listaFiguras);
-    console.log("figuras de ejemplo 1 cargadas correctamente");
-    actualizarTablaYTotal(listaFiguras);
-};
-
 btnAgregarFigura2.onclick = () => {
     cargarFigura2(listaFiguras);
     console.log("figuras de ejemplo 2 cargadas correctamente");
     actualizarTablaYTotal(listaFiguras);
-};
+}; //al hacer click carga figuras de ejemplo 2
 
-let btnMostrarLista = document.getElementById("btn-mostrar-lista");
-btnMostrarLista.onclick = () => {
-    actualizarTablaYTotal(listaFiguras);
-    console.log("lista de figuras mostrada en la tabla y area total calculada");
-};
+/*function mostrarListaFiguras(listaFiguras, orden = "") {
+    let figurasAProcesar = listaFiguras;
 
+    if (orden === "ascendente") {
+        console.log("lista de figuras ordenadas ascendentemente:");
+        figurasAProcesar = listaFiguras.toSorted((a, b) => a.area - b.area);
+    } else if (orden === "descendente") {
+        console.log("lista de figuras ordenadas descendentemente:");
+        figurasAProcesar = listaFiguras.toSorted((a, b) => b.area - a.area);
+    } else {
+        console.log("lista de figuras guardadas:");
+    }
+
+    figurasAProcesar.forEach((figura) => {
+        let indice = listaFiguras.indexOf(figura);
+        figura.mostrarDatos("indice: " + indice + " |");
+    });
+}*/
+
+//BOTON DE AGREGAR CIRCULO
 let inputRadioCirculo = document.getElementById("input-radio-circulo");
 let btnAgregarCirculo = document.getElementById("btn-agregar-circulo");
 btnAgregarCirculo.onclick = () => {
@@ -479,6 +501,7 @@ btnAgregarCirculo.onclick = () => {
     actualizarTablaYTotal(listaFiguras);
 };
 
+//BOTON DE AGREGAR CUADRADO
 let inputLadoCuadrado = document.getElementById("input-lado-cuadrado");
 let btnAgregarCuadrado = document.getElementById("btn-agregar-cuadrado");
 btnAgregarCuadrado.onclick = () => {
@@ -493,12 +516,12 @@ btnAgregarCuadrado.onclick = () => {
     console.log("cuadrado agregado correctamente con area:", areaCuadrado);
     inputLadoCuadrado.value = "";
     actualizarTablaYTotal(listaFiguras);
-}
+};
 
+//BOTON DE AGREGAR RECTANGULO
 let inputBaseRectangulo = document.getElementById("input-base-rectangulo");
 let inputAlturaRectangulo = document.getElementById("input-altura-rectangulo");
 let btnAgregarRectangulo = document.getElementById("btn-agregar-rectangulo");
-
 btnAgregarRectangulo.onclick = () => {
     let base = Number(inputBaseRectangulo.value);
     let altura = Number(inputAlturaRectangulo.value);
@@ -516,9 +539,9 @@ btnAgregarRectangulo.onclick = () => {
     actualizarTablaYTotal(listaFiguras);
 };
 
+//BOTON DE AGREGAR AREA PERSONALIZADA
 let inputAreaPersonalizada = document.getElementById("input-area-personalizada");
 let btnAreaPersonalizado = document.getElementById("btn-area-personalizada");
-
 btnAreaPersonalizado.onclick = () => {
     let area = Number(inputAreaPersonalizada.value);
     if (!esNumeroMayorACero(area)) {
@@ -530,5 +553,168 @@ btnAreaPersonalizado.onclick = () => {
     console.log("figura personalizada agregada correctamente con area:", area);
     inputAreaPersonalizada.value = "";
     actualizarTablaYTotal(listaFiguras);
-}
+};
 
+function buscarFiguraPorID(listaFiguras, idBuscado) {
+    if (!esNumeroMayorACero(idBuscado)) {
+        alert("el ID debe ser un numero entero positivo");
+        return null;
+    }
+
+    const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
+    if (figuraEncontrada) {
+        return figuraEncontrada;
+    }
+    console.log("figura no encontrada con ese ID");
+    return null;
+} //busca un figura segun el ID y la devuelve
+
+//BOTON BUSCAR POR ID
+let inputBuscarID = document.getElementById("input-buscar-id");
+let btnBuscarID = document.getElementById("btn-buscar-id");
+
+btnBuscarID.onclick = () => {
+    let idBuscado = parseInt(inputBuscarID.value);
+
+    if (!esNumeroMayorACero(idBuscado)) {
+        alert("el ID ingresado debe ser un numero entero positivo");
+        inputBuscarID.value = "";
+        return;
+    }
+
+    const figuraEncontrada = buscarFiguraPorID(listaFiguras, idBuscado);
+
+    if (figuraEncontrada) {
+        cuerpoTablaFiguras.innerHTML = "";
+        actualizarTablaYTotal([figuraEncontrada]);
+        console.log("figura encontrada:");
+    } else {
+        alert("figura no encontrada con ese ID");
+        actualizarTablaYTotal(listaFiguras);
+    }
+    inputBuscarID.value = "";
+};
+
+//BOTON BUSCAR POR AREA
+let inputBuscarArea = document.getElementById("input-buscar-area");
+let btnBuscarArea = document.getElementById("btn-buscar-area");
+btnBuscarArea.onclick = () => {
+    let areaBuscada = parseFloat(inputBuscarArea.value);
+    if (!esNumeroMayorACero(areaBuscada)) {
+        alert("el area ingresada debe ser un numero mayor a 0");
+        inputBuscarArea.value = "";
+        return;
+    }
+
+    const figurasEncontradas = listaFiguras.filter((figura) => figura.area == areaBuscada);
+    if (figurasEncontradas.length > 0) {
+        cuerpoTablaFiguras.innerHTML = "";
+        actualizarTablaYTotal(figurasEncontradas);
+        console.log("figuras encontradas con area:", areaBuscada);
+    } else {
+        alert("no se encontraron figuras con esa area");
+        actualizarTablaYTotal(listaFiguras);
+    }
+    inputBuscarArea.value = "";
+};
+
+//BOTON BORRAR PRIMERA FIGURA
+let btnBorrarPrimeraFigura = document.getElementById("btn-borrar-primera");
+btnBorrarPrimeraFigura.onclick = () => {
+    if (listaFiguras.length === 0) {
+        alert("la lista de figuras esta vacia");
+        return;
+    }
+    listaFiguras.shift();
+    console.log("primera figura borrada:");
+    actualizarTablaYTotal(listaFiguras);
+};
+
+//BOTON BORRAR ULTIMA FIGURA
+let btnBorrarUltimaFigura = document.getElementById("btn-borrar-ultima");
+btnBorrarUltimaFigura.onclick = () => {
+    if (listaFiguras.length === 0) {
+        alert("la lista de figuras esta vacia");
+        return;
+    }
+    listaFiguras.pop();
+    console.log("ultima figura borrada:");
+    actualizarTablaYTotal(listaFiguras);
+};
+
+//BOTON BORRAR FIGURA POR INDICE
+let inputBorrarIndice = document.getElementById("input-indice-borrar");
+let btnBorrarIndice = document.getElementById("btn-borrar-indice");
+btnBorrarIndice.onclick = () => {
+    let indiceBorrar = parseInt(inputBorrarIndice.value);
+    if (indiceBorrar >= listaFiguras.length || isNaN(indiceBorrar) || indiceBorrar < 0) {
+        alert("el indice es invalido");
+        inputBorrarIndice.value = "";
+        return;
+    }
+
+    listaFiguras.splice(indiceBorrar, 1)[0];
+    actualizarTablaYTotal(listaFiguras);
+    inputBorrarIndice.value = "";
+};
+
+//BOTON REEMPLAZAR FIGURA POR INDICE
+let inputReemplazarIndice = document.getElementById("input-indice-reemplazar");
+let inputReemplazarArea = document.getElementById("input-nuevo-valor-area");
+let btnReemplazarFigura = document.getElementById("btn-reemplazar");
+
+btnReemplazarFigura.onclick = () => {
+    let indiceReemplazar = parseInt(inputReemplazarIndice.value);
+    let nuevaArea = parseFloat(inputReemplazarArea.value);
+    if (indiceReemplazar >= listaFiguras.length || isNaN(indiceReemplazar) || indiceReemplazar < 0) {
+        alert("el indice es invalido");
+        inputReemplazarIndice.value = "";
+        return;
+    }
+    if (!esNumeroMayorACero(nuevaArea)) {
+        alert("el area ingresada debe ser un numero mayor a 0");
+        inputReemplazarArea.value = "";
+        return;
+    }
+    listaFiguras[indiceReemplazar].area = nuevaArea;
+    actualizarTablaYTotal(listaFiguras);
+    inputReemplazarIndice.value = "";
+    inputReemplazarArea.value = "";
+};
+
+//BOTON CONVERTIR AREA DE FIGURA A METROS
+let inputConvertirIndice = document.getElementById("input-indice-convertir");
+let btnConvertirAMetros = document.getElementById("btn-convertir-a-metros");
+let btnConvertirACentimetros = document.getElementById("btn-convertir-a-cm");
+btnConvertirAMetros.onclick = () => {
+    let indiceConvertir = parseInt(inputConvertirIndice.value);
+    if (indiceConvertir >= listaFiguras.length || isNaN(indiceConvertir) || indiceConvertir < 0) {
+        alert("el indice es invalido");
+        inputConvertirIndice.value = "";
+        return;
+    }
+    if (listaFiguras[indiceConvertir].unidad == unidadM) {
+        alert("la figura ya esta en metros cuadrados");
+        inputConvertirIndice.value = "";
+        return;
+    }
+    listaFiguras[indiceConvertir].convertirAMetrosCuadrados();
+    actualizarTablaYTotal(listaFiguras);
+    inputConvertirIndice.value = "";
+};
+btnConvertirACentimetros.onclick = () => {
+    let indiceConvertir = parseInt(inputConvertirIndice.value);
+    if (indiceConvertir >= listaFiguras.length || isNaN(indiceConvertir) || indiceConvertir < 0) {
+        alert("el indice es invalido");
+        inputConvertirIndice.value = "";
+        return;
+    }
+    if (listaFiguras[indiceConvertir].unidad == unidadPorDefecto) {
+        alert("la figura ya esta en centimetros cuadrados");
+        inputConvertirIndice.value = "";
+        return;
+    }
+    listaFiguras[indiceConvertir].convertirACentimetrosCuadrados();
+    actualizarTablaYTotal(listaFiguras);
+    inputConvertirIndice.value = "";
+};

@@ -212,13 +212,13 @@ nav ul li a {
     font-size: 1.25rem;
     padding: 0.625rem 1.25rem;
     background-color: #0b1d3a;
-    border-color: #f9ca24;
-    color: #f9ca24;
+    border-color: #f8fafc;
+    color: #f8fafc;
 }
 .boton-personal:hover {
     background-color: #0b1d3a;
-    border-color: #7cff44;
-    color: #7cff44;
+    border-color: #f9ca24;
+    color: #f9ca24;
     text-decoration: underline;
 }
 @media (max-width: 992px) {
@@ -227,14 +227,19 @@ nav ul li a {
         padding: 0.5rem;
     }
 }
-
+.boton-personal.activo {
+    background-color: #0b1d3a;
+    border-color: #66fcf1;
+    color: #66fcf1;
+    text-decoration: underline;
+}
 
 .boton-personal-rojo {
     font-size: 1.25rem;
     padding: 0.625rem 1.25rem;
     background-color: #0b1d3a;
-    border-color: #f9ca24;
-    color: #f9ca24;
+    border-color: #f8fafc;
+    color: #f8fafc;
 }
 .boton-personal-rojo:hover {
     background-color: #0b1d3a;

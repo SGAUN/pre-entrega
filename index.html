@@ -84,7 +84,7 @@
                 s- input-radio-circulo
                 s- btn-agregar-circulo
 
-               s - input-lado-cuadrado
+                s- input-lado-cuadrado
                 s- btn-agregar-cuadrado
 
                 s- input-altura-rectangulo
@@ -95,32 +95,34 @@
                 s- btn-area-personalizada
             -->
             <!-- lista de ids: editar y eliminar figuras
-                - cuerpo-tabla-figuras
-                - span-area-total
+                
+                s- btn-ordenar-asc
+                s- btn-ordenar-desc
+                s- btn-ver-lista
 
-                - btn-ordenar-asc
-                - btn-ordenar-desc
-                s- btn-mostrar-lista
+                s- input-buscar-id
+                s- btn-buscar-id
 
-                - input-buscar-id
-                - btn-buscar-id
+                s- input-buscar-area
+                s- btn-buscar-area
 
-                - input-buscar-area
-                - btn-buscar-area
+                s- btn-borrar-primera
+                s- btn-borrar-ultima
 
-                - btn-borrar-primera
-                - btn-borrar-ultima
+                s- input-indice-borrar
+                s- btn-borrar-indice
 
-                - input-indice-borrar
-                - btn-borrar-indice
+                S- input-indice-reemplazar
+                S- input-nuevo-valor-area
+                S- btn-reemplazar
 
-                - input-indice-reemplazar
-                - input-nuevo-valor-area
-                - btn-reemplazar
+                s- input-indice-convertir
+                s- btn-convertir-a-metros
+                s- btn-convertir-a-cm
 
-                - input-indice-convertir
-                - btn-a-metros
-                - btn-a-cm
+                s- cuerpo-tabla-figuras
+                s- span-area-total
+
             -->
             <section class="container-xxl">
                 <h2>Operaciones: añadir figuras de ejemplo</h2>
@@ -154,7 +156,7 @@
                                 <h3>Añadir Círculo</h3>
                                 <div class="input-group">
                                     <span class="input-group-text">Radio (cm)</span>
-                                    <input type="number" class="form-control" id="input-radio-circulo" />
+                                    <input min="0" type="number" class="form-control" id="input-radio-circulo" />
                                     <button class="btn boton-personal" type="button" id="btn-agregar-circulo">
                                         Añadir
                                     </button>
@@ -168,7 +170,7 @@
                                 <h3>Añadir Cuadrado</h3>
                                 <div class="input-group">
                                     <span class="input-group-text">Lado (cm)</span>
-                                    <input type="number" class="form-control" id="input-lado-cuadrado" />
+                                    <input min="0" type="number" class="form-control" id="input-lado-cuadrado" />
                                     <button class="btn boton-personal" type="button" id="btn-agregar-cuadrado">
                                         Añadir
                                     </button>
@@ -182,9 +184,9 @@
                                 <h3>Añadir Rectángulo</h3>
                                 <div class="input-group">
                                     <span class="input-group-text">Base (cm)</span>
-                                    <input type="number" class="form-control" id="input-base-rectangulo" />
+                                    <input min="0" type="number" class="form-control" id="input-base-rectangulo" />
                                     <span class="input-group-text">Altura (cm)</span>
-                                    <input type="number" class="form-control" id="input-altura-rectangulo" />
+                                    <input min="0" type="number" class="form-control" id="input-altura-rectangulo" />
                                     <button class="btn boton-personal" type="button" id="btn-agregar-rectangulo">
                                         Añadir
                                     </button>
@@ -198,7 +200,7 @@
                                 <h3>Añadir area personalizada</h3>
                                 <div class="input-group">
                                     <span class="input-group-text">Area (cm)</span>
-                                    <input type="number" class="form-control" id="input-area-personalizada" />
+                                    <input min="0" type="number" class="form-control" id="input-area-personalizada" />
                                     <button class="btn boton-personal" type="button" id="btn-area-personalizada">
                                         Añadir
                                     </button>
@@ -219,21 +221,21 @@
                         <button class="btn boton-personal w-100" id="btn-ordenar-desc">Ver Descendente (Área)</button>
                     </div>
                     <div class="col-xl-4 celda-grilla">
-                        <button class="btn boton-personal w-100" id="btn-mostrar-lista">Ver Lista</button>
+                        <button class="btn boton-personal w-100 activo" id="btn-ver-lista">Ver Lista</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-6 celda-grilla">
                         <h3>Buscar por ID</h3>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="input-buscar-id" />
+                            <input min="0" type="number" class="form-control" id="input-buscar-id" />
                             <button class="btn boton-personal" id="btn-buscar-id">Buscar ID</button>
                         </div>
                     </div>
                     <div class="col-xl-6 celda-grilla">
                         <h3>Buscar por Área</h3>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="input-buscar-area" />
+                            <input min="0" type="number" class="form-control" id="input-buscar-area" />
                             <button class="btn boton-personal" id="btn-buscar-area">Buscar Área</button>
                         </div>
                     </div>
@@ -245,18 +247,18 @@
                 <div class="row">
                     <div class="col-xl-4 celda-grilla">
                         <button class="btn boton-personal-rojo w-100" id="btn-borrar-primera">
-                            Borrar Primera Figura
+                            Borrar Primera Figura (ID)
                         </button>
                     </div>
                     <div class="col-xl-4 celda-grilla">
                         <button class="btn boton-personal-rojo w-100" id="btn-borrar-ultima">
-                            Borrar Última Figura
+                            Borrar Última Figura (ID)
                         </button>
                     </div>
                     <div class="col-xl-4 celda-grilla">
                         <div class="input-group">
                             <span class="input-group-text">indice</span>
-                            <input type="number" class="form-control" id="input-indice-borrar" />
+                            <input min="0" type="number" class="form-control" id="input-indice-borrar" />
                             <button class="btn boton-personal-rojo" id="btn-borrar-indice">Borrar</button>
                         </div>
                     </div>
@@ -265,9 +267,9 @@
                         <h3>reemplazar</h3>
                         <div class="input-group">
                             <span class="input-group-text">indice</span>
-                            <input type="number" class="form-control" id="input-indice-reemplazar" />
+                            <input min="0" type="number" class="form-control" id="input-indice-reemplazar" />
                             <span class="input-group-text">nuevo valor</span>
-                            <input type="number" class="form-control" id="input-nuevo-valor-area" />
+                            <input min="0" type="number" class="form-control" id="input-nuevo-valor-area" />
                             <button class="btn boton-personal" id="btn-reemplazar">Reemplazar</button>
                         </div>
                     </div>
@@ -275,9 +277,9 @@
                         <h3>convertir</h3>
                         <div class="input-group">
                             <span class="input-group-text">indice</span>
-                            <input type="number" class="form-control" id="input-indice-convertir" />
-                            <button class="btn boton-personal w" id="btn-a-metros">A Metros</button>
-                            <button class="btn boton-personal" id="btn-a-cm">A Cm</button>
+                            <input min="0" type="number" class="form-control" id="input-indice-convertir" />
+                            <button class="btn boton-personal w" id="btn-convertir-a-metros">A Metros</button>
+                            <button class="btn boton-personal" id="btn-convertir-a-cm">A Cm</button>
                         </div>
                     </div>
                 </div>
