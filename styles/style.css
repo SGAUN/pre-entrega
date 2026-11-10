@@ -76,9 +76,6 @@ p {
     color: #d6eaf8;
 }
 
-/* a {
-    color: $color-verde-enlace;
-} */
 li {
     color: #d6eaf8;
 }
@@ -88,7 +85,6 @@ table {
 }
 
 th {
-    /* background-color: $color-verde-enlace; */
     color: #0b1d3a;
 }
 
@@ -180,6 +176,11 @@ nav ul li a {
     color: #66fcf1;
     font-size: 1.6rem;
     border: 2px solid #66fcf1;
+}
+
+#operaciones,
+#editor {
+    scroll-margin-top: 90px;
 }
 
 .imagen-portada {
