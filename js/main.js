@@ -24,16 +24,12 @@ class Figura2D {
 const esNumeroMayorACero = (numero = 0) => !isNaN(numero) && numero > 0; //comprueba si el valor ingresado es un numero mayor a 0
 
 function obtenerColor(nombreFigura) {
-    switch (nombreFigura) {
-        case "circulo":
-            return "rojo";
-        case "cuadrado":
-            return "verde";
-        case "rectangulo":
-            return "azul";
-        default:
-            return "blanco";
-    }
+    const colores = {
+        circulo: "rojo",
+        cuadrado: "verde",
+        rectangulo: "azul",
+    }; //objeto Colores
+    return colores[nombreFigura] || "blanco"; //notacion corchete: objetoColores[propiedad]
 } //retorna un color segun el nombre de una figura, codigo colores: rojo verde y azul se usa para areas calculadas por el simulador y sin modificar, elcolor blanco para otro caso
 
 const listaFiguras = [];
@@ -57,34 +53,17 @@ let spanAreaTotal = document.getElementById("span-area-total");
 let btnVerLista = document.getElementById("btn-ver-lista");
 let btnOrdenarAsc = document.getElementById("btn-ordenar-asc");
 let btnOrdenarDesc = document.getElementById("btn-ordenar-desc");
-function buscarBotonActivo(listaBotones) {
-    for (let boton of listaBotones) {
-        if (boton.classList.contains("activo")) {
-            return boton;
-        } //si el boton tiene la clase "activo" lo devuelve
-    }
-    return null;
-} //busca el boton activo de una lista de botones y lo devuelve
+const buscarBotonActivo = (listaBotones) => listaBotones.find((boton) => boton.classList.contains("activo")) || null; //busca el boton activo de una lista de botones y lo devuelve
 function actualizarTablaYTotal(listaFiguras) {
     cuerpoTablaFiguras.innerHTML = "";
     let areaTotal = 0;
     let copiaListaFiguras = listaFiguras; //no quiero modificar la lista original
     let botonActivo = buscarBotonActivo([btnVerLista, btnOrdenarAsc, btnOrdenarDesc]);
-
-    if (botonActivo == btnOrdenarAsc) {
-        copiaListaFiguras = listaFiguras.toSorted((a, b) => a.area - b.area);
-    } else if (botonActivo == btnOrdenarDesc) {
-        copiaListaFiguras = listaFiguras.toSorted((a, b) => b.area - a.area);
-    } //muestra la lista segun el boton seleccionado de orden
-
+    botonActivo == btnOrdenarAsc && (copiaListaFiguras = listaFiguras.toSorted((a, b) => a.area - b.area)); //muestra la lista segun
+    botonActivo == btnOrdenarDesc && (copiaListaFiguras = listaFiguras.toSorted((a, b) => b.area - a.area)); //el boton seleccionado de orden
     copiaListaFiguras.forEach((figura) => {
         let indice = listaFiguras.indexOf(figura); //busca el indice real de la lista original
-        if (figura.unidad == unidadM) {
-            areaTotal += figura.area * 10000;
-        } else {
-            areaTotal += figura.area;
-        }
-
+        areaTotal += figura.unidad == unidadM ? figura.area * 10000 : figura.area;
         let fila = document.createElement("tr");
         fila.innerHTML = `  <td>${indice}</td>
                             <td>${figura.id}</td>
@@ -161,14 +140,14 @@ btnAgregarCirculo.onclick = () => {
     let radio = Number(inputRadioCirculo.value);
     if (!esNumeroMayorACero(radio)) {
         alertAñadirFigurasIndividuales.textContent = "El radio debe ser un número mayor a 0";
-        return;
+    } else {
+        const areaCirculo = pi * radio ** 2;
+        const nuevaFigura = new Figura2D("circulo", areaCirculo, unidadPorDefecto, obtenerColor("circulo"));
+        listaFiguras.push(nuevaFigura);
+        inputRadioCirculo.value = "";
+        actualizarTablaYTotal(listaFiguras);
+        alertAñadirFigurasIndividuales.textContent = "Se agrego un circulo a la lista de figuras";
     }
-    const areaCirculo = pi * radio ** 2;
-    const nuevaFigura = new Figura2D("circulo", areaCirculo, unidadPorDefecto, obtenerColor("circulo"));
-    listaFiguras.push(nuevaFigura);
-    inputRadioCirculo.value = "";
-    actualizarTablaYTotal(listaFiguras);
-    alertAñadirFigurasIndividuales.textContent = "Se agrego un circulo a la lista de figuras";
 };
 
 //BOTON DE AGREGAR CUADRADO
@@ -179,14 +158,14 @@ btnAgregarCuadrado.onclick = () => {
     let lado = Number(inputLadoCuadrado.value);
     if (!esNumeroMayorACero(lado)) {
         alertAñadirFigurasIndividuales.textContent = "El lado del cuadrado debe ser un número mayor a 0";
-        return;
+    } else {
+        const areaCuadrado = lado * lado;
+        const nuevaFigura = new Figura2D("cuadrado", areaCuadrado, unidadPorDefecto, obtenerColor("cuadrado"));
+        listaFiguras.push(nuevaFigura);
+        inputLadoCuadrado.value = "";
+        actualizarTablaYTotal(listaFiguras);
+        alertAñadirFigurasIndividuales.textContent = "Se agrego un cuadrado a la lista de figuras";
     }
-    const areaCuadrado = lado * lado;
-    const nuevaFigura = new Figura2D("cuadrado", areaCuadrado, unidadPorDefecto, obtenerColor("cuadrado"));
-    listaFiguras.push(nuevaFigura);
-    inputLadoCuadrado.value = "";
-    actualizarTablaYTotal(listaFiguras);
-    alertAñadirFigurasIndividuales.textContent = "Se agrego un cuadrado a la lista de figuras";
 };
 
 //BOTON DE AGREGAR RECTANGULO
@@ -196,23 +175,20 @@ let btnAgregarRectangulo = document.getElementById("btn-agregar-rectangulo");
 btnAgregarRectangulo.onclick = () => {
     limpiarAlerts();
     let base = Number(inputBaseRectangulo.value);
-    if (!esNumeroMayorACero(base)) {
-        alertAñadirFigurasIndividuales.textContent = "La base del rectangulo debe ser un número mayor a 0";
-        return;
-    }
     let altura = Number(inputAlturaRectangulo.value);
-    if (!esNumeroMayorACero(altura)) {
-        alertAñadirFigurasIndividuales.textContent = "La altura del rectangulo debe ser un número mayor a 0";
-        return;
+    if (!esNumeroMayorACero(base)) {
+        alertAñadirFigurasIndividuales.textContent = "La base del rectangulo deben ser números mayores a 0";
+    } else if (!esNumeroMayorACero(altura)) {
+        alertAñadirFigurasIndividuales.textContent = "La altura del rectangulo deben ser números mayores a 0";
+    } else {
+        const areaRectangulo = base * altura;
+        const nuevaFigura = new Figura2D("rectangulo", areaRectangulo, unidadPorDefecto, obtenerColor("rectangulo"));
+        listaFiguras.push(nuevaFigura);
+        inputBaseRectangulo.value = "";
+        inputAlturaRectangulo.value = "";
+        actualizarTablaYTotal(listaFiguras);
+        alertAñadirFigurasIndividuales.textContent = "Se agrego un rectangulo a la lista de figuras";
     }
-
-    const areaRectangulo = base * altura;
-    const nuevaFigura = new Figura2D("rectangulo", areaRectangulo, unidadPorDefecto, obtenerColor("rectangulo"));
-    listaFiguras.push(nuevaFigura);
-    inputBaseRectangulo.value = "";
-    inputAlturaRectangulo.value = "";
-    actualizarTablaYTotal(listaFiguras);
-    alertAñadirFigurasIndividuales.textContent = "Se agrego un rectangulo a la lista de figuras";
 };
 
 //BOTON DE AGREGAR AREA PERSONALIZADA
@@ -223,13 +199,13 @@ btnAreaPersonalizado.onclick = () => {
     let area = Number(inputAreaPersonalizada.value);
     if (!esNumeroMayorACero(area)) {
         alertAñadirFigurasIndividuales.textContent = "El area personalizada debe ser un número mayor a 0";
-        return;
+    } else {
+        const nuevaFigura = new Figura2D("personalizado", area, unidadPorDefecto, "blanco");
+        listaFiguras.push(nuevaFigura);
+        inputAreaPersonalizada.value = "";
+        actualizarTablaYTotal(listaFiguras);
+        alertAñadirFigurasIndividuales.textContent = "Se agrego un area personalizada a la lista de figuras";
     }
-    const nuevaFigura = new Figura2D("personalizado", area, unidadPorDefecto, "blanco");
-    listaFiguras.push(nuevaFigura);
-    inputAreaPersonalizada.value = "";
-    actualizarTablaYTotal(listaFiguras);
-    alertAñadirFigurasIndividuales.textContent = "Se agrego un area personalizada a la lista de figuras";
 };
 
 //BOTON BUSCAR POR ID
@@ -241,19 +217,19 @@ btnBuscarID.onclick = () => {
     if (!esNumeroMayorACero(idBuscado)) {
         alertVisualizacionYFiltros.textContent = "El ID debe ser un número entero positivo";
         inputBuscarID.value = "";
-        return;
-    }
-    const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
-    if (figuraEncontrada) {
-        cuerpoTablaFiguras.innerHTML = "";
-        actualizarTablaYTotal([figuraEncontrada]);
     } else {
-        alertVisualizacionYFiltros.textContent = "Figura no encontrada con ese ID";
-        actualizarTablaYTotal(listaFiguras);
+        const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
+        if (figuraEncontrada) {
+            cuerpoTablaFiguras.innerHTML = "";
+            actualizarTablaYTotal([figuraEncontrada]);
+            alertVisualizacionYFiltros.textContent =
+                "Se muestra la figura con el ID buscado, si no se encuentra se muestra la lista completa";
+        } else {
+            actualizarTablaYTotal(listaFiguras);
+            alertVisualizacionYFiltros.textContent = "Figura no encontrada con ese ID";
+        }
+        inputBuscarID.value = "";
     }
-    inputBuscarID.value = "";
-    alertVisualizacionYFiltros.textContent =
-        "Se muestra la figura con el ID buscado, si no se encuentra se muestra la lista completa";
 };
 
 //BOTON BUSCAR POR AREA
@@ -265,18 +241,18 @@ btnBuscarArea.onclick = () => {
     if (!esNumeroMayorACero(areaBuscada)) {
         alertVisualizacionYFiltros.textContent = "El area debe ser un número mayor a 0";
         inputBuscarArea.value = "";
-        return;
-    }
-    const figurasEncontradas = listaFiguras.filter((figura) => figura.area == areaBuscada);
-    if (figurasEncontradas.length > 0) {
-        cuerpoTablaFiguras.innerHTML = "";
-        actualizarTablaYTotal(figurasEncontradas);
-        alertVisualizacionYFiltros.textContent = "Se muestran las figuras con el area buscada";
     } else {
-        alertVisualizacionYFiltros.textContent = "No se encontraron figuras con esa area";
-        actualizarTablaYTotal(listaFiguras);
+        const figurasEncontradas = listaFiguras.filter((figura) => figura.area == areaBuscada);
+        if (figurasEncontradas.length > 0) {
+            cuerpoTablaFiguras.innerHTML = "";
+            actualizarTablaYTotal(figurasEncontradas);
+            alertVisualizacionYFiltros.textContent = "Se muestran las figuras con el area buscada";
+        } else {
+            actualizarTablaYTotal(listaFiguras);
+            alertVisualizacionYFiltros.textContent = "No se encontraron figuras con esa area";
+        }
+        inputBuscarArea.value = "";
     }
-    inputBuscarArea.value = "";
 };
 
 //BOTON BORRAR PRIMERA FIGURA
@@ -285,11 +261,11 @@ btnBorrarPrimeraFigura.onclick = () => {
     limpiarAlerts();
     if (listaFiguras.length === 0) {
         alertEdicionYEliminacion.textContent = "La lista de figuras esta vacia";
-        return;
+    } else {
+        listaFiguras.shift();
+        actualizarTablaYTotal(listaFiguras);
+        alertEdicionYEliminacion.textContent = "Se borro la primera figura de la lista";
     }
-    listaFiguras.shift();
-    actualizarTablaYTotal(listaFiguras);
-    alertEdicionYEliminacion.textContent = "Se borro la primera figura de la lista";
 };
 
 //BOTON BORRAR ULTIMA FIGURA
@@ -298,11 +274,11 @@ btnBorrarUltimaFigura.onclick = () => {
     limpiarAlerts();
     if (listaFiguras.length === 0) {
         alertEdicionYEliminacion.textContent = "La lista de figuras esta vacia";
-        return;
+    } else {
+        listaFiguras.pop();
+        actualizarTablaYTotal(listaFiguras);
+        alertEdicionYEliminacion.textContent = "Se borro la ultima figura de la lista";
     }
-    listaFiguras.pop();
-    actualizarTablaYTotal(listaFiguras);
-    alertEdicionYEliminacion.textContent = "Se borro la ultima figura de la lista";
 };
 
 //BOTON BORRAR FIGURA POR INDICE
@@ -315,12 +291,12 @@ btnBorrarIndice.onclick = () => {
         alertEdicionYEliminacion.textContent =
             "El indice debe ser un numero entero positivo menor al tamaño de la lista";
         inputBorrarIndice.value = "";
-        return;
+    } else {
+        listaFiguras.splice(indiceBorrar, 1)[0];
+        actualizarTablaYTotal(listaFiguras);
+        inputBorrarIndice.value = "";
+        alertEdicionYEliminacion.textContent = "Se borro la figura del indice ingresado";
     }
-    listaFiguras.splice(indiceBorrar, 1)[0];
-    actualizarTablaYTotal(listaFiguras);
-    inputBorrarIndice.value = "";
-    alertEdicionYEliminacion.textContent = "Se borro la figura del indice ingresado";
 };
 
 //BOTON REEMPLAZAR FIGURA POR INDICE
@@ -335,18 +311,16 @@ btnReemplazarFigura.onclick = () => {
         alertEdicionYEliminacion.textContent =
             "El indice debe ser un numero entero positivo menor al tamaño de la lista";
         inputReemplazarIndice.value = "";
-        return;
-    }
-    if (!esNumeroMayorACero(nuevaArea)) {
+    } else if (!esNumeroMayorACero(nuevaArea)) {
         alertEdicionYEliminacion.textContent = "El area debe ser un numero mayor a 0";
         inputReemplazarArea.value = "";
-        return;
+    } else {
+        listaFiguras[indiceReemplazar].area = nuevaArea;
+        actualizarTablaYTotal(listaFiguras);
+        inputReemplazarIndice.value = "";
+        inputReemplazarArea.value = "";
+        alertEdicionYEliminacion.textContent = "Se reemplazo el area de la figura del indice ingresado";
     }
-    listaFiguras[indiceReemplazar].area = nuevaArea;
-    actualizarTablaYTotal(listaFiguras);
-    inputReemplazarIndice.value = "";
-    inputReemplazarArea.value = "";
-    alertEdicionYEliminacion.textContent = "Se reemplazo el area de la figura del indice ingresado";
 };
 
 //BOTON CONVERTIR AREA DE FIGURA A METROS
@@ -360,17 +334,15 @@ btnConvertirAMetros.onclick = () => {
         alertEdicionYEliminacion.textContent =
             "El indice debe ser un numero entero positivo menor al tamaño de la lista";
         inputConvertirIndice.value = "";
-        return;
-    }
-    if (listaFiguras[indiceConvertir].unidad == unidadM) {
+    } else if (listaFiguras[indiceConvertir].unidad == unidadM) {
         alertEdicionYEliminacion.textContent = "la figura ya esta en metros cuadrados";
         inputConvertirIndice.value = "";
-        return;
+    } else {
+        listaFiguras[indiceConvertir].convertirAMetrosCuadrados();
+        actualizarTablaYTotal(listaFiguras);
+        inputConvertirIndice.value = "";
+        alertEdicionYEliminacion.textContent = "Se convirtio el area de la figura del indice a metros cuadrados";
     }
-    listaFiguras[indiceConvertir].convertirAMetrosCuadrados();
-    actualizarTablaYTotal(listaFiguras);
-    inputConvertirIndice.value = "";
-    alertEdicionYEliminacion.textContent = "Se convirtio el area de la figura del indice ingresado a metros cuadrados";
 };
 btnConvertirACentimetros.onclick = () => {
     limpiarAlerts();
@@ -379,16 +351,13 @@ btnConvertirACentimetros.onclick = () => {
         alertEdicionYEliminacion.textContent =
             "El indice debe ser un numero entero positivo menor al tamaño de la lista";
         inputConvertirIndice.value = "";
-        return;
-    }
-    if (listaFiguras[indiceConvertir].unidad == unidadPorDefecto) {
+    } else if (listaFiguras[indiceConvertir].unidad == unidadPorDefecto) {
         alertEdicionYEliminacion.textContent = "la figura ya esta en centimetros cuadrados";
         inputConvertirIndice.value = "";
-        return;
+    } else {
+        listaFiguras[indiceConvertir].convertirACentimetrosCuadrados();
+        actualizarTablaYTotal(listaFiguras);
+        inputConvertirIndice.value = "";
+        alertEdicionYEliminacion.textContent = "Se convirtio el area de la figura del indice a centimetros cuadrados";
     }
-    listaFiguras[indiceConvertir].convertirACentimetrosCuadrados();
-    actualizarTablaYTotal(listaFiguras);
-    inputConvertirIndice.value = "";
-    alertEdicionYEliminacion.textContent =
-        "Se convirtio el area de la figura del indice ingresado a centimetros cuadrados";
 };
