@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-xl-4 celda-grilla">
                         <button class="btn boton-personal-rojo w-100" id="btn-borrar-ultima">
-                            Borrar Última Figura (ID)
+                            Borrar Ultima Figura (ID)
                         </button>
                     </div>
                     <div class="col-xl-4 celda-grilla">
@@ -141,7 +141,7 @@
             </section>
 
             <!-- seccion: tabla de las figuras -->
-            <h2>Listado de Figuras Actuales</h2>
+            <h2>Tabla de figuras</h2>
             <section class="container-xxl">
                 <article class="card bg-oscuro">
                     <div class="card-body">
@@ -160,12 +160,23 @@
                                 <tbody id="cuerpo-tabla-figuras"></tbody>
                             </table>
                         </div>
-                        <div>
-                            <h3>
-                                Area Total:
-                                <span id="span-area-total">0</span>
-                                cm²
-                            </h3>
+                        <div class="row">
+                            <div class="col-xl-6 celda-grilla">
+                                <div class="input-group" id="bloque-btn-borrar">
+                                    <span class="input-group-text" id="label-borrar">Borrar lista</span>
+                                    <button class="btn boton-personal flex-grow-1" id="btn-borrar-lista">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 celda-grilla">
+                                <h3>
+                                    Area Total:
+                                    <span id="span-area-total">0</span>
+                                    cm²
+                                </h3>
+                            </div>
+                            <p id="alert-tabla-figuras"></p>
                         </div>
                     </div>
                 </article>

@@ -19,6 +19,7 @@ btnAgregarFigura1.onclick = () => {
     cargarFigura1(listaFiguras);
     alertAñadirConjuntoDeFiguras.textContent =
         "Se agregaron 2 circulos y 1 rectangulo de ejemplo a la lista de figuras";
+    guardarLista();
 }; //al hacer click carga figuras de ejemplo 1
 
 //BOTON DE AGREGAR FIGURA 2
@@ -35,6 +36,7 @@ btnAgregarFigura2.onclick = () => {
     limpiarAlerts();
     cargarFigura2(listaFiguras);
     alertAñadirConjuntoDeFiguras.textContent = "Se agregaron 3 cuadrados y 2 circulos de ejemplo a la lista de figuras";
+    guardarLista();
 }; //al hacer click carga figuras de ejemplo 2
 
 //BOTON DE AGREGAR CIRCULO
@@ -51,6 +53,7 @@ btnAgregarCirculo.onclick = () => {
         listaFiguras.push(nuevaFigura);
         inputRadioCirculo.value = "";
         alertAñadirFigurasIndividuales.textContent = "Se agrego un circulo a la lista de figuras";
+        guardarLista();
     }
 };
 
@@ -68,6 +71,7 @@ btnAgregarCuadrado.onclick = () => {
         listaFiguras.push(nuevaFigura);
         inputLadoCuadrado.value = "";
         alertAñadirFigurasIndividuales.textContent = "Se agrego un cuadrado a la lista de figuras";
+        guardarLista();
     }
 };
 
@@ -90,6 +94,7 @@ btnAgregarRectangulo.onclick = () => {
         inputBaseRectangulo.value = "";
         inputAlturaRectangulo.value = "";
         alertAñadirFigurasIndividuales.textContent = "Se agrego un rectangulo a la lista de figuras";
+        guardarLista();
     }
 };
 
@@ -106,5 +111,6 @@ btnAreaPersonalizado.onclick = () => {
         listaFiguras.push(nuevaFigura);
         inputAreaPersonalizada.value = "";
         alertAñadirFigurasIndividuales.textContent = "Se agrego un area personalizada a la lista de figuras";
+        guardarLista();
     }
 };

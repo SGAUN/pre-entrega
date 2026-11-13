@@ -1,10 +1,13 @@
 //MENSAJES DE ALERT PARA CADA SECCION
 let alertVisualizacionYFiltros = document.getElementById("alert-visualizacion-y-filtros");
 let alertEdicionYEliminacion = document.getElementById("alert-edicion-y-eliminacion");
+let alertTablaFiguras = document.getElementById("alert-tabla-figuras");
 function limpiarAlerts() {
     alertVisualizacionYFiltros.textContent = "";
     alertEdicionYEliminacion.textContent = "";
+    alertTablaFiguras.textContent = "";
 } //funcion para limpiar los mensaje de alert
+
 //CUERPO DE LA TABLA Y SPAN DEL AREA TOTAL
 //BOTONES DE ORDENAR Y VER LISTA
 let cuerpoTablaFiguras = document.getElementById("cuerpo-tabla-figuras");
@@ -13,7 +16,7 @@ let btnVerLista = document.getElementById("btn-ver-lista");
 let btnOrdenarAsc = document.getElementById("btn-ordenar-asc");
 let btnOrdenarDesc = document.getElementById("btn-ordenar-desc");
 const buscarBotonActivo = (listaBotones) => listaBotones.find((boton) => boton.classList.contains("activo")) || null; //busca el boton activo de una lista de botones y lo devuelve
-function actualizarTablaYTotal(listaFiguras) {
+function actualizarTablaYTotal(listaFiguras, esListaOriginal = true) {
     cuerpoTablaFiguras.innerHTML = "";
     let areaTotal = 0;
     let copiaListaFiguras = listaFiguras; //no quiero modificar la lista original
@@ -36,6 +39,7 @@ function actualizarTablaYTotal(listaFiguras) {
         cuerpoTablaFiguras.appendChild(fila);
     });
     spanAreaTotal.textContent = areaTotal.toFixed(2);
+    esListaOriginal && guardarLista(); //solo lo guardo si "listaFiguras" es la lista original
 } //actualiza la tabla y el area total segun la lista de figuras
 function activarBoton(botonSeleccionado) {
     const listaBotones = [btnVerLista, btnOrdenarAsc, btnOrdenarDesc];
@@ -74,7 +78,7 @@ btnBuscarID.onclick = () => {
         const figuraEncontrada = listaFiguras.find((figura) => figura.id == idBuscado);
         if (figuraEncontrada) {
             cuerpoTablaFiguras.innerHTML = "";
-            actualizarTablaYTotal([figuraEncontrada]);
+            actualizarTablaYTotal([figuraEncontrada], false); //evito que se guarde la lista al mostrar
             alertVisualizacionYFiltros.textContent =
                 "Se muestra la figura con el ID buscado, si no se encuentra se muestra la lista completa";
         } else {
@@ -98,7 +102,7 @@ btnBuscarArea.onclick = () => {
         const figurasEncontradas = listaFiguras.filter((figura) => figura.area == areaBuscada);
         if (figurasEncontradas.length > 0) {
             cuerpoTablaFiguras.innerHTML = "";
-            actualizarTablaYTotal(figurasEncontradas);
+            actualizarTablaYTotal(figurasEncontradas, false); //evito que se guarde la lista al mostrar
             alertVisualizacionYFiltros.textContent = "Se muestran las figuras con el area buscada";
         } else {
             actualizarTablaYTotal(listaFiguras);
@@ -214,3 +218,31 @@ btnConvertirACentimetros.onclick = () => {
         alertEdicionYEliminacion.textContent = "Se convirtio el area de la figura del indice a centimetros cuadrados";
     }
 };
+
+let btnBorrarLista = document.getElementById("btn-borrar-lista");
+let labelBorrar = document.getElementById("label-borrar");
+btnBorrarLista.onclick = () => {
+    limpiarAlerts();
+
+    if (listaFiguras.length === 0) {
+        alertTablaFiguras.textContent = "La lista de figuras ya esta vacia";
+    } else if (!btnBorrarLista.classList.contains("boton-personal-rojo")) {
+        btnBorrarLista.classList.remove("boton-personal");//primer click
+        btnBorrarLista.classList.add("boton-personal-rojo");
+        labelBorrar.textContent = "¿Esta seguro?";
+        alertTablaFiguras.textContent = "Presione nuevamente el boton para confirmar el borrado total";
+    } else {
+        listaFiguras = [];
+        localStorage.removeItem("lista-figuras");
+        actualizarTablaYTotal(listaFiguras);
+
+        btnBorrarLista.classList.remove("boton-personal-rojo");
+        btnBorrarLista.classList.add("boton-personal");
+        btnBorrarLista.textContent = "Eliminar";
+
+        labelBorrar.textContent = "Borrar lista";
+        alertTablaFiguras.textContent = "Se borraron todas las figuras de la lista";
+    }
+};
+
+actualizarTablaYTotal(listaFiguras); //al cargar la pagina muestro la lista de figuras
