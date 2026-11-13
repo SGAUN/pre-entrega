@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- BOOTSTRAP CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <!-- JS -->
+        <script src="../js/main.js" defer></script>
+        <script src="../js/editor.js" defer></script>
+        <title>Pre-Entrega 6 -Simulador de Areas</title>
+    </head>
+    <body>
+        <!-- header: Encabezado -->
+        <header>
+            <nav class="navbar navbar-expand-lg bg-oscuro fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <!-- logo simulador de areas -->
+                        <img
+                            src="../assets/img/logo-pagina.png"
+                            class="img-fluid logo-nav"
+                            alt="Logo de Simulador de Areas"
+                        />
+                    </a>
+                    <button
+                        class="navbar-toggler menu-button-text"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span>Menu</span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./operaciones.html">Operaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pagina-actual" href="#">Editor</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- main: Contenido principal -->
+        <main>
+            <!-- Seccion: visualizacion y filtros -->
+            <h2>Visualizacion y Filtros</h2>
+            <section class="container-xxl bg-oscuro">
+                <div class="row">
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100" id="btn-ordenar-asc">Ver Ascendente (Area)</button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100" id="btn-ordenar-desc">Ver Descendente (Area)</button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal w-100 activo" id="btn-ver-lista">Ver Lista</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>Buscar por ID</h3>
+                        <div class="input-group">
+                            <input min="0" type="number" class="form-control" id="input-buscar-id" />
+                            <button class="btn boton-personal" id="btn-buscar-id">Buscar ID</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>Buscar por Area</h3>
+                        <div class="input-group">
+                            <input min="0" type="number" class="form-control" id="input-buscar-area" />
+                            <button class="btn boton-personal" id="btn-buscar-area">Buscar Area</button>
+                        </div>
+                    </div>
+                </div>
+                <p id="alert-visualizacion-y-filtros"></p>
+            </section>
+
+            <!-- Seccion: edicion y eliminacion -->
+            <h2>Edicion y Eliminacion</h2>
+            <section class="container-xxl bg-oscuro">
+                <div class="row">
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal-rojo w-100" id="btn-borrar-primera">
+                            Borrar Primera Figura (ID)
+                        </button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <button class="btn boton-personal-rojo w-100" id="btn-borrar-ultima">
+                            Borrar Última Figura (ID)
+                        </button>
+                    </div>
+                    <div class="col-xl-4 celda-grilla">
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input min="0" type="number" class="form-control" id="input-indice-borrar" />
+                            <button class="btn boton-personal-rojo" id="btn-borrar-indice">Borrar</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>reemplazar</h3>
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input min="0" type="number" class="form-control" id="input-indice-reemplazar" />
+                            <span class="input-group-text">nuevo valor</span>
+                            <input min="0" type="number" class="form-control" id="input-nuevo-valor-area" />
+                            <button class="btn boton-personal" id="btn-reemplazar">Reemplazar</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 celda-grilla">
+                        <h3>convertir</h3>
+                        <div class="input-group">
+                            <span class="input-group-text">indice</span>
+                            <input min="0" type="number" class="form-control" id="input-indice-convertir" />
+                            <button class="btn boton-personal w" id="btn-convertir-a-metros">A Metros</button>
+                            <button class="btn boton-personal" id="btn-convertir-a-cm">A Cm</button>
+                        </div>
+                    </div>
+                </div>
+                <p id="alert-edicion-y-eliminacion"></p>
+            </section>
+
+            <!-- seccion: tabla de las figuras -->
+            <h2>Listado de Figuras Actuales</h2>
+            <section class="container-xxl">
+                <article class="card bg-oscuro">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover estilo-tabla">
+                                <thead>
+                                    <tr>
+                                        <th>Indice</th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Area</th>
+                                        <th>Unidad</th>
+                                        <th>Color</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpo-tabla-figuras"></tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>
+                                Area Total:
+                                <span id="span-area-total">0</span>
+                                cm²
+                            </h3>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- footer: Pie de pagina -->
+        <footer>
+            <div class="bg-oscuro estilo-footer">
+                <div>
+                    <h4>Contacto</h4>
+                    <p>Teléfono: 12 3456-7890</p>
+                    <p>Mail: ejemplo@ejemplo.com</p>
+                </div>
+
+                <div>
+                    <h4>Derechos de Autor</h4>
+                    <p>© 2026 Mi Proyecto. Todos los derechos reservados.</p>
+                </div>
+
+                <div>
+                    <h4>Redes</h4>
+                    <ul class="lista-iconos-simples">
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <img src="../assets/img/logo-facebook.png" alt="Enlace a la Pagina de Facebook" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <img src="../assets/img/logo-youtube.png" alt="Enlace al canal de YouTube" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.github.com/">
+                                <img
+                                    src="../assets/img/logo-github.png"
+                                    alt="Enlace al repositorio o perfil de GitHub"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/">
+                                <img src="../assets/img/logo-linkedin.png" alt="Enlace al perfil de Linkedin" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <!-- BOOTSTRAP JS -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
