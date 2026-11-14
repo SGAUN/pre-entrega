@@ -4,12 +4,13 @@ const unidadM = "m^2";
 const unidadPorDefecto = unidadCM;
 class Figura2D {
     static id = 0;
-    constructor(nombre, area, unidad, color) {
+    constructor(nombre, area, unidad, color, cantidad = 1) {
         this.id = ++Figura2D.id;
         this.nombre = nombre;
         this.area = area;
         this.unidad = unidad;
         this.color = color;
+        this.cantidad = cantidad;
     }
     convertirAMetrosCuadrados() {
         this.area = this.area / 10000;

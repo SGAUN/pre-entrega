@@ -15,6 +15,26 @@ let spanAreaTotal = document.getElementById("span-area-total");
 let btnVerLista = document.getElementById("btn-ver-lista");
 let btnOrdenarAsc = document.getElementById("btn-ordenar-asc");
 let btnOrdenarDesc = document.getElementById("btn-ordenar-desc");
+function vincularBotonesEliminarEnTabla(listaFiguras) {
+    let botonEliminar = document.querySelectorAll(".boton-eliminar-tabla");
+    botonEliminar.forEach((boton) => {
+        boton.onclick = (e) => {
+            limpiarAlerts();
+            const botonId = e.currentTarget.id;
+            const indice = parseInt(botonId.split("-")[1]);
+            const figuraSeleccionada = listaFiguras[indice];
+
+            if (figuraSeleccionada.cantidad > 1) {
+                figuraSeleccionada.cantidad -= 1;
+                alertTablaFiguras.textContent = "Se disminuyo la cantidad de la figura seleccionada en 1";
+            } else {
+                listaFiguras.splice(indice, 1);
+                alertTablaFiguras.textContent = "Se elimino la figura seleccionada de la lista";
+            }
+            actualizarTablaYTotal(listaFiguras);
+        };
+    });
+}
 const buscarBotonActivo = (listaBotones) => listaBotones.find((boton) => boton.classList.contains("activo")) || null; //busca el boton activo de una lista de botones y lo devuelve
 function actualizarTablaYTotal(listaFiguras, esListaOriginal = true) {
     cuerpoTablaFiguras.innerHTML = "";
@@ -27,19 +47,25 @@ function actualizarTablaYTotal(listaFiguras, esListaOriginal = true) {
 
     copiaListaFiguras.forEach((figura) => {
         let indiceOriginal = listaFiguras.indexOf(figura); //busca el indice real de la lista original
-        areaTotal += figura.unidad == unidadM ? figura.area * 10000 : figura.area;
-        let { id, nombre, area, unidad, color } = figura; //destructuring
+        let areaFigura = figura.unidad == unidadM ? figura.area * 10000 : figura.area;
+        areaTotal += areaFigura * figura.cantidad;
+        let { id, nombre, area, unidad, color, cantidad } = figura; //destructuring
         let fila = document.createElement("tr");
-        fila.innerHTML = `  <td>${indiceOriginal}</td>
+        fila.innerHTML = `  <td>
+                                <button class="boton-eliminar-tabla" id="figura-${indiceOriginal}">Eliminar</button>
+                            </td>
+                            <td>${indiceOriginal}</td>
                             <td>${id}</td>
                             <td>${nombre}</td>
+                            <td>${color}</td>
+                            <td>${cantidad}</td>
                             <td>${area}</td>
-                            <td>${unidad}</td>
-                            <td>${color}</td>`;
+                            <td>${unidad}</td>`;
         cuerpoTablaFiguras.appendChild(fila);
     });
     spanAreaTotal.textContent = areaTotal.toFixed(2);
     esListaOriginal && guardarLista(); //solo lo guardo si "listaFiguras" es la lista original
+    vincularBotonesEliminarEnTabla(listaFiguras); //le doy funcion a los botones de eliminar de la tabla
 } //actualiza la tabla y el area total segun la lista de figuras
 function activarBoton(botonSeleccionado) {
     const listaBotones = [btnVerLista, btnOrdenarAsc, btnOrdenarDesc];
@@ -219,6 +245,7 @@ btnConvertirACentimetros.onclick = () => {
     }
 };
 
+//BOTON ELIMINAR TODA LA LISTA
 let btnBorrarLista = document.getElementById("btn-borrar-lista");
 let labelBorrar = document.getElementById("label-borrar");
 btnBorrarLista.onclick = () => {
@@ -227,7 +254,7 @@ btnBorrarLista.onclick = () => {
     if (listaFiguras.length === 0) {
         alertTablaFiguras.textContent = "La lista de figuras ya esta vacia";
     } else if (!btnBorrarLista.classList.contains("boton-personal-rojo")) {
-        btnBorrarLista.classList.remove("boton-personal");//primer click
+        btnBorrarLista.classList.remove("boton-personal"); //primer click
         btnBorrarLista.classList.add("boton-personal-rojo");
         labelBorrar.textContent = "¿Esta seguro?";
         alertTablaFiguras.textContent = "Presione nuevamente el boton para confirmar el borrado total";
@@ -245,4 +272,7 @@ btnBorrarLista.onclick = () => {
     }
 };
 
+
+
 actualizarTablaYTotal(listaFiguras); //al cargar la pagina muestro la lista de figuras
+

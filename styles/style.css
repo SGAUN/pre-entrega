@@ -283,9 +283,25 @@ nav ul li a {
         border-radius: 0.25rem;
     }
 }
+.boton-eliminar-tabla {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+.boton-eliminar-tabla:hover {
+    color: #ff4d4d;
+    text-decoration: underline;
+}
 
 .bg-oscuro {
     background-color: #1a2638;
+}
+.bg-oscuro-nav {
+    background-color: #121a27;
 }
 
 .celda-grilla {
